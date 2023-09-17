@@ -23,7 +23,7 @@ if(count(array_filter($arrayRutas)) == 1){
         header('Content-Type: application/json; charset=utf-8');
         $response = [
             "status" => 201,
-            "msg" => "Welcome Api GSX V5 2023",
+            "msg" => "Welcome Api iStore Booking",
         ];
 
         echo json_encode($response);

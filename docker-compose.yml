@@ -83,8 +83,6 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - "./docker/mysql/config/mysql.cnf:/etc/mysql/conf.d/custom.cnf:ro"
-      - "./docker/mysql/dbdata:/var/lib/mysql"
       - volumen-mysql:/var/lib/mysql
     environment:
       - MYSQL_PASSWORD=root
