@@ -18,7 +18,7 @@ header('Content-Type: application/json');
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 
 
-if(count(array_filter($arrayRutas)) == 0){
+if(count(array_filter($arrayRutas)) == 1){
     if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
         header('Content-Type: application/json; charset=utf-8');
         $response = [
@@ -31,15 +31,15 @@ if(count(array_filter($arrayRutas)) == 0){
 }
 
 
-if(count(array_filter($arrayRutas)) == 1){
+if(count(array_filter($arrayRutas)) == 2){
 
-    if(array_filter($arrayRutas)[1] == "check"){
+    if(array_filter($arrayRutas)[2] == "check"){
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
             controllers\AuthController::check();
         }
     }
 
-    if(array_filter($arrayRutas)[1] == "validate_token"){
+    if(array_filter($arrayRutas)[2] == "validate_token"){
 
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
            controllers\AuthController::validateToken();
@@ -47,7 +47,7 @@ if(count(array_filter($arrayRutas)) == 1){
 
     }
 
-    if(str_contains(array_filter($arrayRutas)[1], "date-available-slots")){
+    if(str_contains(array_filter($arrayRutas)[2], "date-available-slots")){
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 
             if(isset($_GET["productCode"]) && is_string($_GET["productCode"])) {
@@ -65,7 +65,7 @@ if(count(array_filter($arrayRutas)) == 1){
     }
 
 
-    if(str_contains(array_filter($arrayRutas)[1], "time-available-slots")){
+    if(str_contains(array_filter($arrayRutas)[2], "time-available-slots")){
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 
             if(isset($_GET["productCode"]) && is_string($_GET["productCode"])) {
@@ -84,7 +84,7 @@ if(count(array_filter($arrayRutas)) == 1){
 
 
 
-    if(array_filter($arrayRutas)[1] == "create-reservation"){
+    if(array_filter($arrayRutas)[2] == "create-reservation"){
 
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
            controllers\ReservationController::create();
