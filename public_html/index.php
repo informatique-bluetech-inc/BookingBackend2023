@@ -13,5 +13,13 @@ if(count(array_filter($arrayRutas)) == 2){
             $router = new controllers\RutasiStoreController();
             $router->index();
      }
+     if(array_filter($arrayRutas)[1] == "istore_two"){
+       $router = new controllers\RutasiStoreTwoController();
+       $router->index();
+     }
+     if(array_filter($arrayRutas)[1] == "istore_three"){
+       $router = new controllers\RutasiStoreThreeController();
+       $router->index();
+     }
 }
 

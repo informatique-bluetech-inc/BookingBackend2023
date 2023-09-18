@@ -38,7 +38,7 @@ class ConfigModel
 
 
     public function consultToken(){
-        $token = AuthModel::selectToken("config_gsx_params_api");
+        $token = AuthModel::selectToken("bluetech");
         if($token){
             $this->REST_AUTH_TOKEN  = $token['active_token_app'];
         }
