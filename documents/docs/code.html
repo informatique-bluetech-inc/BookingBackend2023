@@ -19,10 +19,6 @@
 
   <body>
 
-
-  
-
-
     <!-- Header -->
     <header class="header text-white bg-dark pt-9 pb-5" style="background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);">
       <div class="container">
@@ -64,8 +60,15 @@
               <h1>Instalacion Servicios Compartidos</h1>
               <p class="lead">Pasos de instalación de servicio compartidos.</p>
 
-              <hr class="my-8">
-
+              <hr class="my-2">
+              <h4>Crear Base de Datos</h4>
+              <pre><code class="language-markup">&#13;CREATE TABLE demo_db (
+                &#13;id INT AUTO_INCREMENT  PRIMARY KEY,
+                &#13;active_token_app TEXT NOT NULL,
+                &#13;created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                &#13;updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+                &#13;) ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+                    </code></pre>
              
               <h4 id="code-blocks-inline">Remplazar y Copiar</h4>
               <p>Copia la carpeta llamado /bluetech.</p>
@@ -180,17 +183,8 @@ class Config
       <div class="container">
         <div class="row gap-y align-items-center">
 
-          <div class="col-md-9">
-            <div class="nav justify-content-center justify-content-md-start">
-              <a class="nav-link" href="../index.html">Home</a>
-              <a class="nav-link" href="../docs/kb-introduction.html">Docs</a>
-              <a class="nav-link" href="../page/changelog-1.html">Changelog</a>
-              <a class="nav-link" href="https://themeforest.net/item/thedocs-online-documentation-template/13070884?license=regular&open_purchase_for_item_id=13070884&purchasable=source&ref=thethemeio">Purchase</a>
-            </div>
-          </div>
-
-          <div class="col-md-3 text-center text-md-right">
-            <a href="http://thetheme.io">© TheThemeio</a>
+          <div class="col-md-12 text-center text-md-right">
+            <a href="http://thetheme.io">© Bluetech</a>
           </div>
         </div>
       </div>
