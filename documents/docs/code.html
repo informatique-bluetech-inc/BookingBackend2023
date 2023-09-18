@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>Gui Servidor Compartido</title>
+
+    <!-- Styles -->
+    <link href="../assets/css/page.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+    <link rel="icon" href="../assets/img/favicon.png">
+  </head>
+
+  <body>
+
+
+  
+
+
+    <!-- Header -->
+    <header class="header text-white bg-dark pt-9 pb-5" style="background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);">
+      <div class="container">
+        <h3>Documentation</h3>
+      </div>
+    </header><!-- /.header -->
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <div class="row">
+
+
+          <!--
+          |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+          | Sidebar
+          |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+          !-->
+          <div class="col-md-4 col-xl-3 order-last order-md-first">
+            <hr class="d-md-none">
+            <aside class="sidebar sidebar-sticky sidebar-stick-shadow pr-md-5 br-1">
+              <ul class="nav nav-sidebar nav-sidebar-hero" data-accordion="true">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Guia <i class="nav-angle"></i></a>
+                </li
+              </ul>
+            </aside>
+          </div>
+
+
+          <!--
+          |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+          | Content
+          |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+          !-->
+          <div class="col-md-7 col-xl-8 ml-md-auto py-8">
+            <article>
+              <h1>Instalacion Servicios Compartidos</h1>
+              <p class="lead">Pasos de instalación de servicio compartidos.</p>
+
+              <hr class="my-8">
+
+             
+              <h4 id="code-blocks-inline">Remplazar y Copiar</h4>
+              <p>Copia la carpeta llamado /bluetech.</p>
+              <div class="code-snippet">
+                <div class="code-preview">
+                  Comandos importantes a utilizar en linux server
+                </div>
+                <pre class="no-toolbar"><code class="language-markup"># Para copiar el directorio fonts al directorio fonts2 en una carpeta por encima de la actual:&#13;cp -r fonts/ ../fonts2&#13;# Para copiar el directorio fonts al directorio fonts2 en la misma carpeta &#13;cp -r fonts/ fonts2
+                </code></pre>
+                <pre class="no-toolbar"><code class="language-markup"># Ejemplo 1 (mover el directorio img a un nivel por encima sin cambiarle el nombre) &#13;mv img ../img &#13;# Ejemplo 2 (mover el directorio img a la carpeta interna files cambiandole el nombre a images&#13;mv img files/images
+                </code></pre>
+                <pre class="no-toolbar"><code class="language-markup"># Como vemos basta escribir el nombre del directorio (sin barra al final) y dejando un espacio, el nuevo nombre. Así, si queremos renombrar el directorio img a images lo haríamos así: &#13;mv img images</code></pre>
+              </div>
+
+        
+              <h2 id="syntax-highlighter">Archivos a Modificar</h2>
+              <p>Estos son los pasos de los archivos a modificar y a tener en cuenta</p>
+
+              <p>public_html/index.php carpeta raiz modificar los nombres del controlador rutas Ej:</p>
+<pre><code class="language-markup">&#60;?php
+  require_once __DIR__."/bluetech/Controllers/RutasController.php";
+  require_once __DIR__."/istore/Controllers/RutasController.php";
+  require_once __DIR__."/istore_two/Controllers/RutasController.php";
+  require_once __DIR__."/istore_three/Controllers/RutasController.php";
+  
+  $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
+  
+  if(count(array_filter($arrayRutas)) == 2){
+       if(array_filter($arrayRutas)[1] == "bluetech"){
+              $router = new controllers\RutasBluetechController();
+              $router->index();
+       }
+       if(array_filter($arrayRutas)[1] == "istore"){
+              $router = new controllers\RutasiStoreController();
+              $router->index();
+       }
+       if(array_filter($arrayRutas)[1] == "istore_two"){
+         $router = new controllers\RutasiStoreTwoController();
+         $router->index();
+       }
+       if(array_filter($arrayRutas)[1] == "istore_three"){
+         $router = new controllers\RutasiStoreThreeController();
+         $router->index();
+       }
+  }
+  
+  
+</code></pre>
+
+              <p>public_html/shopping/index.php modificar el nombre controlador.</p>
+
+<pre class="line-numbers"><code class="language-markup">&#60;?php
+  date_default_timezone_set('Canada/Central');
+  
+  require_once __DIR__."/Controllers/RutasController.php";
+  
+  $router = new controllers\RutasiStoreController();
+  $router->index();
+  
+  
+</code></pre>
+
+
+    <h3>Configuración</h3>
+    <p>Importante antes de continuar con la configuración ingresa a esta información para generar un token de apple, a tener encuenta que se necesita un suaurio o contraseña del apple partner.
+      <br/>
+      Refresh Token Apple Partner
+      <br/>
+      https://login-partner-connect.apple.com/api/login
+
+    </p>
+
+              <p>Ruta archivos de configuración file://public_html/shopping/Config/config.php </p>
+
+<pre class="line-numbers no-language"><code class="language-markup">&#60;?php
+namespace Config;
+
+class Config
+{
+    static public function data()
+    {
+        return [
+            "REST_CERT_PATH" => dirname(__FILE__, 1) . "/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
+            "REST_SSL_KEY" => dirname(__FILE__, 1) . "/privatekey.pem",
+            "REST_CERT_PASS" => "iStore07631Englewood",
+            "REST_ACCOUNT_ID" => "mudit@ishopsms.com",
+            "REST_BASE_URL" => "https://api-partner-connect.apple.com",
+            "REST_AUTH_TOKEN_APPLE" => "c63afca2-8fd6-4a73-880a-74497e945e1g",
+            "REST_AUTH_TOKEN" => "",
+            "REST_SoldTo" => "0001054076",
+            "REST_ShipTo" => "0001054076",
+            "REST_AUTH_PATH" => "/api",
+            "REST_GSX_PATH" => "/gsx/api",
+        ];
+    }
+
+}</code></pre>
+
+<h3>Base de datos</h3>
+<p>En esta linea de codigo cambia el nombre de la tabla</p>
+<pre class="line-numbers no-copy"><code class="language-markup">
+  $token = AuthModel::selectToken("istore");
+</code></pre>
+
+        </div>
+      </div>
+    </main><!-- /.main-content -->
+
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="row gap-y align-items-center">
+
+          <div class="col-md-9">
+            <div class="nav justify-content-center justify-content-md-start">
+              <a class="nav-link" href="../index.html">Home</a>
+              <a class="nav-link" href="../docs/kb-introduction.html">Docs</a>
+              <a class="nav-link" href="../page/changelog-1.html">Changelog</a>
+              <a class="nav-link" href="https://themeforest.net/item/thedocs-online-documentation-template/13070884?license=regular&open_purchase_for_item_id=13070884&purchasable=source&ref=thethemeio">Purchase</a>
+            </div>
+          </div>
+
+          <div class="col-md-3 text-center text-md-right">
+            <a href="http://thetheme.io">© TheThemeio</a>
+          </div>
+        </div>
+      </div>
+    </footer><!-- /.footer -->
+
+
+    <!-- Scripts -->
+    <script src="../assets/js/page.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+
+  </body>
+</html>
