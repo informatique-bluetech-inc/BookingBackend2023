@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__."/bluetech/Controllers/RutasController.php";
 require_once __DIR__."/istore/Controllers/RutasController.php";
+require_once __DIR__."/istore_two/Controllers/RutasController.php";
+require_once __DIR__."/istore_three/Controllers/RutasController.php";
 
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 

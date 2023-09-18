@@ -2428,3 +2428,7 @@
 172.18.0.1 - - [17/Sep/2023:14:14:18 -0300] "GET /check HTTP/1.1" 200 5 "-" "PostmanRuntime/7.32.3" "-"
 172.18.0.1 - - [17/Sep/2023:14:14:47 -0300] "GET /bluetech/check HTTP/1.1" 200 41 "-" "PostmanRuntime/7.32.3" "-"
 172.18.0.1 - - [17/Sep/2023:14:16:58 -0300] "GET /bluetech/date-available-slots?productCode=MAC HTTP/1.1" 200 78 "-" "PostmanRuntime/7.32.3" "-"
+172.18.0.1 - - [17/Sep/2023:23:35:24 -0300] "GET /istore_three/check HTTP/1.1" 200 273 "-" "PostmanRuntime/7.32.3" "-"
+172.18.0.1 - - [17/Sep/2023:23:36:43 -0300] "GET /istore_three/check HTTP/1.1" 200 41 "-" "PostmanRuntime/7.32.3" "-"
+172.18.0.1 - - [17/Sep/2023:23:36:51 -0300] "GET /istore_two/check HTTP/1.1" 200 41 "-" "PostmanRuntime/7.32.3" "-"
+172.18.0.1 - - [17/Sep/2023:23:36:57 -0300] "GET /istore/check HTTP/1.1" 200 41 "-" "PostmanRuntime/7.32.3" "-"
