@@ -13,7 +13,8 @@ use Models\ConfigModel;
 class AuthController{
     protected static $state_token = 0;
     protected static function consultToken(){
-        return AuthModel::selectToken("config_gsx_params_api");
+        $config = new ConfigModel();
+        return AuthModel::selectToken($config->REST_TABLE);
     }
     static public function check(): void {
         $config = new ConfigModel();
@@ -51,7 +52,7 @@ class AuthController{
         $token = self::consultToken();
 
         if(!$token){
-           $result = AuthModel::createToken('config_gsx_params_api', $config->REST_AUTH_TOKEN_APPLE);
+           $result = AuthModel::createToken($config->REST_TABLE, $config->REST_AUTH_TOKEN_APPLE);
            if($result == "ok"){
                $config = new ConfigModel();
                $token = self::consultToken();
@@ -111,7 +112,7 @@ class AuthController{
                 ];
 
                 if($response["status"] == 201 || $response["status"] == 200 ) {
-                    AuthModel::updateToken("config_gsx_params_api", $token["id"], $response["response"]);
+                    AuthModel::updateToken($config->REST_TABLE, $token["id"], $response["response"]);
                     LogMsg::message("Success fully update password =)");
                 }
 
