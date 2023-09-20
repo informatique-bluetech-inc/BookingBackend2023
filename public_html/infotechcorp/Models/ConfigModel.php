@@ -19,6 +19,7 @@ class ConfigModel
     public $REST_ShipTo;
     public $REST_GSX_PATH;
     public $REST_SLL_KEY;
+    public $REST_TABLE;
 
     public function __construct()
     {
@@ -33,12 +34,14 @@ class ConfigModel
         $this->REST_ShipTo = Config::data()["REST_ShipTo"];
         $this->REST_AUTH_PATH = Config::data()["REST_AUTH_PATH"];
         $this->REST_GSX_PATH = Config::data()["REST_GSX_PATH"];
+        $this->REST_TABLE = Config::data()["REST_TABLE"];
         $this->consultToken();
     }
 
 
     public function consultToken(){
-        $token = AuthModel::selectToken("istore_two");
+        
+        $token = AuthModel::selectToken($this->REST_TABLE);
         if($token){
             $this->REST_AUTH_TOKEN  = $token['active_token_app'];
         }
