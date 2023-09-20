@@ -18,7 +18,7 @@ class Config
             "REST_ShipTo" => "0001259855",
             "REST_AUTH_PATH" => "/api",
             "REST_GSX_PATH" => "/gsx/api",
-            "REST_TABLE"=>"bluetech"
+            "REST_TABLE" => "bluetech"
         ];
     }
 
