@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-class RutasiStoreTwoController
+class RutasInfotechcorpController
 {
 
     public function index(): void
