@@ -18,6 +18,7 @@ if(count(array_filter($arrayRutas)) == 2){
             $router->index();
      }
      if(array_filter($arrayRutas)[1] == "istore_two"){
+      echo "SERGIO Estoy rutas";
        $router = new controllers\RutasiStoreTwoController();
        $router->index();
      }

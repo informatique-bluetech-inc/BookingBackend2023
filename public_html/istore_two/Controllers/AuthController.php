@@ -17,7 +17,7 @@ class AuthController{
         return AuthModel::selectToken($config->REST_TABLE);
     }
     static public function check(): void {
-        echo "Estoy en check de istoretwo";
+        echo "SERGIO Estoy en check de istoretwo";
         $config = new ConfigModel();
         $url = $config->REST_BASE_URL . $config->REST_AUTH_PATH . "/authenticate/check";
 
