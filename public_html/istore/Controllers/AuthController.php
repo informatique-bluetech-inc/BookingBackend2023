@@ -12,10 +12,16 @@ use Models\ConfigModel;
 
 class AuthController{
     protected static $state_token = 0;
+
+
+    //--------------------------------------
     protected static function consultToken(){
         $config = new ConfigModel();
         return AuthModel::selectToken($config->REST_TABLE);
     }
+
+
+    //--------------------------------------
     static public function check(): void {
         $config = new ConfigModel();
         $url = $config->REST_BASE_URL . $config->REST_AUTH_PATH . "/authenticate/check";
@@ -45,6 +51,9 @@ class AuthController{
         ];
         echo json_encode($response);
     }
+
+
+    //--------------------------------------
     static public function validateToken(): void
     {
 
