@@ -38,7 +38,7 @@ class ConfigModel
 
 
     public function consultToken(){
-        $token = AuthModel::selectToken("istore_three");
+        $token = AuthModel::selectToken("istore");
         if($token){
             $this->REST_AUTH_TOKEN  = $token['active_token_app'];
         }
