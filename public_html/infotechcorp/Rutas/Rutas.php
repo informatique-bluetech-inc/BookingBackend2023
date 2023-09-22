@@ -84,7 +84,7 @@ if(count(array_filter($arrayRutas)) == 2){
 
 
 
-    if(array_filter($arrayRutas)[2] == "create-reservation"){
+    if(str_contains(array_filter($arrayRutas)[2] == "create-reservation")){
 
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
            controllers\ReservationController::create();
