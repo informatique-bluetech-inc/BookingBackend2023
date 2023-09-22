@@ -11,27 +11,22 @@ if(count(array_filter($arrayRutas)) == 2){
      if(array_filter($arrayRutas)[1] == "bluetech"){
             $router = new controllers\RutasBluetechController();
             $router->index();
-            return;
      }
      if(array_filter($arrayRutas)[1] == "istore"){
             $router = new controllers\RutasiStoreController();
             $router->index();
-            return;
      }
      if(array_filter($arrayRutas)[1] == "istore_two"){
        $router = new controllers\RutasiStoreTwoController();
        $router->index();
-            return;
      }
      if(array_filter($arrayRutas)[1] == "istore_three"){
        $router = new controllers\RutasiStoreThreeController();
        $router->index();
-            return;
      }
      if(array_filter($arrayRutas)[1] == "infotechcorp"){
        $router = new controllers\RutasInfotechcorpController();
        $router->index();
-            return;
      }
 }
 
