@@ -15,7 +15,7 @@ class Config
             "REST_AUTH_TOKEN_APPLE" => "f90a7ef2-6979-44e6-a676-43e3a490049u",
             "REST_AUTH_TOKEN" => "",
             "REST_SoldTo" => "0001054076",
-            "REST_ShipTo" => "0001054076",//35 S Van Brunt St, Englewood
+            "REST_ShipTo" => "0001054076",
             "REST_AUTH_PATH" => "/api",
             "REST_GSX_PATH" => "/gsx/api",
             "REST_TABLE" => "istore",
