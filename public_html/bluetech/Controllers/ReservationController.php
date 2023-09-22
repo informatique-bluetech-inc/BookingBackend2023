@@ -7,13 +7,13 @@ use DatePeriod;
 use DateTime;
 use Models\ConfigModel;
 
-class ReservationController
+class ReservationBluetechController
 {
 
 
     static public function fetchAvailableSlots($device_type): array
     {
-        AuthController::validateToken();
+        AuthBluetechController::validateToken();
 
         $config = new ConfigModel();
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/fetch-available-slots?productCode=" . $device_type;
@@ -130,7 +130,7 @@ class ReservationController
 
     static public function create(): void
     {
-        AuthController::validateToken();
+        AuthBluetechController::validateToken();
 
         $config = new ConfigModel();
 
