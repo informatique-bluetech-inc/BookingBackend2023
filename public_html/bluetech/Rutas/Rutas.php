@@ -88,6 +88,7 @@ if(count(array_filter($arrayRutas)) == 2){
 
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
            controllers\ReservationController::create();
+           return;
         }
 
     }
