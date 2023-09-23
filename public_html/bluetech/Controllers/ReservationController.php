@@ -148,7 +148,7 @@ class ReservationBluetechController
             $lang_code = "en-US";
         }
 
-        $request_headers = [
+        /*$request_headers = [
             'X-Apple-SoldTo: ' . $config->REST_SoldTo,
             'X-Apple-ShipTo: ' . $config->REST_ShipTo,
             'X-Apple-Auth-Token: ' . $config->REST_AUTH_TOKEN,
@@ -223,7 +223,8 @@ class ReservationBluetechController
             ];
             echo json_encode($response);
         }
-        curl_close($ch);
+        curl_close($ch);*/
+        echo json_encode(["msg" => "Paso...."]);
     
     }
 }
