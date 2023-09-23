@@ -134,8 +134,7 @@ class ReservationBluetechController
         $config = new ConfigModel();
 
         $request = json_decode(file_get_contents('php://input'), true);
-        ob_end_flush();
-
+     
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
         $date_appointment = date("Y-m-d\TH:i:s.000\Z", strtotime($request["appointment"] . " +4 hours"));
@@ -148,7 +147,7 @@ class ReservationBluetechController
             $lang_code = "en-US";
         }
 
-        /*$request_headers = [
+        $request_headers = [
             'X-Apple-SoldTo: ' . $config->REST_SoldTo,
             'X-Apple-ShipTo: ' . $config->REST_ShipTo,
             'X-Apple-Auth-Token: ' . $config->REST_AUTH_TOKEN,
@@ -223,8 +222,7 @@ class ReservationBluetechController
             ];
             echo json_encode($response);
         }
-        curl_close($ch);*/
-        echo json_encode(["msg" => "Paso...."]);
+        curl_close($ch);
     
     }
 }
