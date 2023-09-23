@@ -198,7 +198,7 @@ class ReservationBluetechController
                     }
                     }';
 
-        ob_start();
+   
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $config->REST_CERT_PATH);
@@ -224,7 +224,7 @@ class ReservationBluetechController
             echo json_encode($response);
         }
         curl_close($ch);
-        ob_end_clean();
+    
     }
 }
 
