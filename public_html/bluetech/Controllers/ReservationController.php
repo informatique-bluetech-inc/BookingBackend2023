@@ -129,13 +129,12 @@ class ReservationBluetechController
 
     static public function create(): void
     {
+        $request = json_decode(file_get_contents('php://input'));
         
         AuthBluetechController::validateToken();
 
         $config = new ConfigModel();
 
-        $request = json_decode(file_get_contents('php://input'));
-     
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
         $date_appointment = date("Y-m-d\TH:i:s.000\Z", strtotime($request["appointment"] . " +4 hours"));
