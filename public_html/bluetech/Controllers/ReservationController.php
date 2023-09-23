@@ -129,6 +129,8 @@ class ReservationBluetechController
 
     static public function create(): void
     {
+        ob_start();
+
         AuthBluetechController::validateToken();
 
         $config = new ConfigModel();
@@ -197,7 +199,7 @@ class ReservationBluetechController
                     }
                     }';
 
-   
+        ob_end_flush();
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $config->REST_CERT_PATH);
