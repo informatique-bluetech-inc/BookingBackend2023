@@ -129,13 +129,12 @@ class ReservationBluetechController
 
     static public function create(): void
     {
-        ob_start();
-
+        
         AuthBluetechController::validateToken();
 
         $config = new ConfigModel();
 
-        $request = json_decode(file_get_contents('php://input'), true);
+        $request = json_decode(file_get_contents('php://input'));
      
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
@@ -199,7 +198,7 @@ class ReservationBluetechController
                     }
                     }';
 
-        ob_end_flush();
+    
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $config->REST_CERT_PATH);
