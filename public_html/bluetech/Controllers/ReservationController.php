@@ -227,3 +227,5 @@ class ReservationBluetechController
         ob_end_clean();
     }
 }
+
+?>

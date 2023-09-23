@@ -13,3 +13,4 @@ class Connection
         return $link;
     }
 }
+?>

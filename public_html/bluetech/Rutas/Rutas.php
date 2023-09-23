@@ -87,3 +87,4 @@ if(count(array_filter($arrayRutas)) == 2){
 
 }
 
+?>
