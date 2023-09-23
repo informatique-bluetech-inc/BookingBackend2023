@@ -6,8 +6,6 @@ require_once __DIR__."/../Controllers/ReservationController.php";
 date_default_timezone_set("America/New_York");
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-ob_end_flush();
-
 
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 

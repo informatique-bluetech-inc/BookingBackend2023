@@ -134,6 +134,7 @@ class ReservationBluetechController
         $config = new ConfigModel();
 
         $request = json_decode(file_get_contents('php://input'), true);
+        ob_end_flush();
 
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
