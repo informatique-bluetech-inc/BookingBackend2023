@@ -129,7 +129,7 @@ class ReservationBluetechController
 
     static public function create(): void
     {
-        $request = json_decode(file_get_contents('php://input'));
+        $request = json_decode(file_get_contents('php://input'), TRUE);
         
         AuthBluetechController::validateToken();
 
