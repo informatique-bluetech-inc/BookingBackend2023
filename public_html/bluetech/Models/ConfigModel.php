@@ -4,7 +4,7 @@ namespace Models;
 
 require_once __DIR__."/../Config/Config.php";
 
-use config\Config;
+use config\ConfigBluetech;
 
 class ConfigModel
 {
