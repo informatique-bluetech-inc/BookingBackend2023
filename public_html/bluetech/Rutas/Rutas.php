@@ -1,12 +1,13 @@
 <?php
+ob_start();
 require_once __DIR__."/../Controllers/AuthController.php";
 require_once __DIR__."/../Controllers/ReservationController.php";
 
 date_default_timezone_set("America/New_York");
-ob_start();
+
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-ob_end_clean();
+
 
 
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
@@ -87,5 +88,5 @@ if(count(array_filter($arrayRutas)) == 2){
 
 
 }
-
+ob_end_clean();
 ?>
