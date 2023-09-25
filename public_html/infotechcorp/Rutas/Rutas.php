@@ -23,7 +23,7 @@ if(count(array_filter($arrayRutas)) == 1){
         header('Content-Type: application/json; charset=utf-8');
         $response = [
             "status" => 201,
-            "msg" => "Welcome Api Bluetech Booking",
+            "msg" => "Welcome Api InfoTechCorp",
         ];
 
         echo json_encode($response);
