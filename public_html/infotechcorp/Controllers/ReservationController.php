@@ -22,7 +22,7 @@ class ReservationController
             'X-Apple-SoldTo: ' . $config->REST_SoldTo,
             'X-Apple-ShipTo: ' . $config->REST_ShipTo,
             'X-Apple-Auth-Token: ' . $config->REST_AUTH_TOKEN,
-            'X-Apple-Service-Version: v4',
+            'X-Apple-Service-Version: v5',
             'Content-Type: application/json',
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
@@ -152,7 +152,7 @@ class ReservationController
             'X-Apple-SoldTo: ' . $config->REST_SoldTo,
             'X-Apple-ShipTo: ' . $config->REST_ShipTo,
             'X-Apple-Auth-Token: ' . $config->REST_AUTH_TOKEN,
-            'X-Apple-Service-Version: v4',
+            'X-Apple-Service-Version: v5',
             'Content-Type: application/json',
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
@@ -165,7 +165,7 @@ class ReservationController
                         "productCode": "'. $request["device"] .'"
                     },
                     "notes": {
-                        "note": "WEB FORM GSX API V3"
+                        "note": "New Reservation InfoTechCorp"
                     },
                     "emailLanguageCode": "'.$lang_code.'",
                     "shipToCode": "'. $config->REST_ShipTo .'",
