@@ -12,7 +12,7 @@ class Config
             "REST_CERT_PASS" => "iStore07631Englewood",
             "REST_ACCOUNT_ID" => "service@istorestm.com",
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
-            "REST_AUTH_TOKEN_APPLE" => "1c4eeda7-cca3-4057-b24c-4822becf11dz",
+            "REST_AUTH_TOKEN_APPLE" => "840ad5dc-4a2e-4f2c-bb2d-fe7a67e4026s",
             "REST_AUTH_TOKEN" => "",
             "REST_SoldTo" => "0001221470",
             "REST_ShipTo" => "0001221470",
