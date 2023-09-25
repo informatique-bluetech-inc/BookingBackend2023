@@ -12,7 +12,7 @@ class Config
             "REST_CERT_PASS" => "Subject-Gawk7",//change
             "REST_ACCOUNT_ID" => "Mrameez-apple@infotechcorporation.com",//change
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
-            "REST_AUTH_TOKEN_APPLE" => "deb22aa7-bb7c-4b58-abe4-49d45e08df8a",//change
+            "REST_AUTH_TOKEN_APPLE" => "25f9613d-e93c-4c70-b75f-cb40b09ee09m",//change
             "REST_AUTH_TOKEN" => "",
             "REST_SoldTo" => "0000023532",//change
             "REST_ShipTo" => "0000023532",//change
