@@ -5,3 +5,4 @@
 [2023-09-25 14:47:41] [INFO]: {"errorId":"g-5281c440-d867-497c-8cb4-8fd9ba34fc64","errors":[{"code":"UNAUTHORIZED","message":"You are not authorized."}]}
 [2023-09-25 14:53:06] [WARNING]: {"status":201,"msg":"No need to refresh token in 30 minutes"}
 [2023-09-25 15:07:59] [INFO]: {"errorId":"g-78a14561-576a-4468-b625-4f7c205cd7b6","errors":[{"code":"UNAUTHORIZED","message":"You are not authorized."}]}
+[2023-09-25 15:23:57] [INFO]: {"errorId":"g-bc0c6942-36bf-4395-9520-bcccb21a948b","errors":[{"code":"UNAUTHORIZED","message":"You are not authorized."}]}
