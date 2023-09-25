@@ -165,7 +165,7 @@ class ReservationController
                         "productCode": "'. $request["device"] .'"
                     },
                     "notes": {
-                        "note": "WEB FORM GSX API V3"
+                        "note": "Booking Reservation IStore"
                     },
                     "emailLanguageCode": "'.$lang_code.'",
                     "shipToCode": "'. $config->REST_ShipTo .'",
