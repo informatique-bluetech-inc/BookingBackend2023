@@ -18,7 +18,7 @@ class Config
             "REST_ShipTo" => "0001221470",
             "REST_AUTH_PATH" => "/api",
             "REST_GSX_PATH" => "/gsx/api",
-            "REST_TABLE" => "istore",
+            "REST_TABLE" => "istore_three",
         ];
     }
 
