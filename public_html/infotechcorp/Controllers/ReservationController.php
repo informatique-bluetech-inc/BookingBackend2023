@@ -78,7 +78,7 @@ class ReservationController
     static public function dateAvailableSlots($device_type): void
     {
         $slots = self::fetchAvailableSlots($device_type);
-        var_dump($slots);
+       
    
         if (!($slots[1] == 200 || $slots[1] == 201)) {
             $response = [
