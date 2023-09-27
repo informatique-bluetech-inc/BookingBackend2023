@@ -215,7 +215,7 @@ class ReservationController
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $data = json_decode($result);
       
-        if (curl_exec($ch) === false) {
+        if ($result === false) {
             echo 'Curl error: ' . curl_error($ch);
         } else {
             $response = [

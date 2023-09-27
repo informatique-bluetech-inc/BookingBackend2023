@@ -104,7 +104,7 @@ class AuthController{
 
             $data = json_decode($result);
 
-            if (curl_exec($ch) === false) {
+            if ($result === false) {
                 LogMsg::message(curl_error($ch), 'error');
             } else {
                 $response = [
