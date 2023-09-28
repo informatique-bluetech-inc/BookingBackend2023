@@ -70,7 +70,8 @@ class ReservationController
             }
 
         }
-
+        sort($hours_available);
+        
         if (!is_null($hours_available)) {
             echo json_encode(["correlationId" => $slots[2]->correlationId, "hours" => $hours_available]);
         } else {
