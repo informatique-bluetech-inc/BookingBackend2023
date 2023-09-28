@@ -5,8 +5,6 @@ require_once __DIR__."/istore_two/Controllers/RutasController.php";
 require_once __DIR__."/istore_three/Controllers/RutasController.php";
 require_once __DIR__."/infotechcorp/Controllers/RutasController.php";
 
-chmod(__DIR__."/../public_html", 0777);
-chmod(__DIR__."/../public_html/main.log", 0777);
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   header('Access-Control-Allow-Origin: *');
