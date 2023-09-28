@@ -1,7 +1,6 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-
 namespace Controllers;
+header('Access-Control-Allow-Origin: *');
 
 use DateInterval;
 use DatePeriod;
