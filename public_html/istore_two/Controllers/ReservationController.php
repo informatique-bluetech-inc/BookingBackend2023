@@ -138,7 +138,7 @@ class ReservationController
 
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
-        $date_appointment = date("Y-m-d\TH:i:s.000\Z", strtotime($request["appointment"] . " +5 hours"));
+        $date_appointment = date("Y-m-d\TH:i:s.000\Z", strtotime($request["appointment"] . " +4 hours"));
 
         if ($request['language'] == 'es-Es') {
             $lang_code = "es-ES";
