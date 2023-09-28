@@ -66,9 +66,7 @@ class ReservationController
                 if(!in_array($time, $hours_available)){
                     $hours_available[] = $time;
                 }
-               
             }
-
         }
 
         if (!is_null($hours_available)) {

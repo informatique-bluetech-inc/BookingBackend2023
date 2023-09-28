@@ -61,7 +61,10 @@ class ReservationBluetechController
 
         foreach ($slots[2]->slots as $item) {
             if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
-                $hours_available[] = date('H:i', strtotime($item->start.'+1 hour'));
+                $time = date('H:i', strtotime($item->start.'+1 hour'));
+                if(!in_array($time, $hours_available)){
+                    $hours_available[] = $time;
+                }
             }
 
         }
