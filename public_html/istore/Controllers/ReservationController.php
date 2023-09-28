@@ -63,7 +63,7 @@ class ReservationController
         foreach ($slots[2]->slots as $item) {
             if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
                 $time = date('H:i', strtotime($item->start.'+1 hour'));
-                if(in_array($time, $hours_available)){
+                if(!in_array($time, $hours_available)){
                     $hours_available[] = $time;
                 }
                
