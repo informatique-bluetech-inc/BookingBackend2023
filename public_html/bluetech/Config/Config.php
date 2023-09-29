@@ -12,7 +12,7 @@ class ConfigBluetech
             "REST_CERT_PASS" => "BluetechAppleGSX2022",
             "REST_ACCOUNT_ID" => "gsxapi@ibluetech.ca",
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
-            "REST_AUTH_TOKEN_APPLE" => "9b6c6d55-2f7b-477d-8490-2f36b1dcd04g",
+            "REST_AUTH_TOKEN_APPLE" => "70c4d580-b996-47b6-beea-b00740cb843n",
             "REST_AUTH_TOKEN" => "",
             "REST_SoldTo" => "0001259855",
             "REST_ShipTo" => "0001259855",
