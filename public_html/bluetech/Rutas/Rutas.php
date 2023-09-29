@@ -2,7 +2,7 @@
 require_once __DIR__."/../Controllers/AuthController.php";
 require_once __DIR__."/../Controllers/ReservationController.php";
 
-date_default_timezone_set("America/New_York");
+date_default_timezone_set("Etc/GMT-4");
 
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 
