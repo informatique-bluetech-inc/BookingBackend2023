@@ -62,13 +62,13 @@ class ReservationBluetechController
         $hours_available = [];
 
         foreach ($slots[2]->slots as $item) {
-            echo "item =".$item."\n";
-            echo "date('Y-m-d', strtotime(item->end .  UTC)) =".date('Y-m-d', strtotime($item->end . " UTC"))."\n";
+            echo "item =".var_dump($item)."\n";
+            echo "date('Y-m-d', strtotime(item->end .  UTC)) =".var_dump(date('Y-m-d', strtotime($item->end . " UTC")))."\n";
             echo "filter_date =".$filter_date."\n";
             
             if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
                 $time = date('H:i', strtotime($item->start.'+1 hour'));
-                echo "time =".$time."\n";
+                echo "time =".var_dump($time)."\n";
                 
                 if(!in_array($time, $hours_available)){
                     $hours_available[] = $time;
