@@ -49,6 +49,10 @@ class ReservationBluetechController
 
     static public function timeAvailableSlots($device_type, $filter_date): void
     {
+
+        //$filter_date;//hay que convertir esto en utc
+        //$filter_date = gmdate('Y-m-d', strtotime($filter_date));
+
         $slots = self::fetchAvailableSlots($device_type);
       
         if (!($slots[1] == 200 || $slots[1] == 201)) {
@@ -61,23 +65,35 @@ class ReservationBluetechController
         }
         $hours_available = [];
 
-        foreach ($slots[2]->slots as $item) {
-            echo "item =".var_dump($item)."\n";
-            echo "date('Y-m-d', strtotime(item->end .  UTC)) =".var_dump(date('Y-m-d', strtotime($item->end . " UTC")))."\n";
-            echo "filter_date =".$filter_date."\n";
-            
+        /*foreach ($slots[2]->slots as $item) {
             if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
                 $time = date('H:i', strtotime($item->start.'+1 hour'));
-                echo "time =".var_dump($time)."\n";
-                
                 if(!in_array($time, $hours_available)){
                     $hours_available[] = $time;
                 }
             }
+        }*/
 
+        date_default_timezone_set((string) $slots[2]->storeTimeZone);
+
+
+        foreach ($slots[2]->slots as $item) {
+            $startDatetimeUtcTimezone = strtotime ($item->start);
+            $startDatetimeLocalTimezone = date('Y-m-d H:i:s', $startDatetimeUtcTimezone);
+            echo "startDatetimeUtcTimezone";print_r($startDatetimeUtcTimezone);echo "\n";
+            echo "startDatetimeLocalTimezone";print_r($startDatetimeLocalTimezone);echo "\n";
+            echo "filter_date";print_r($filter_date);echo "\n";
+            echo "date('Y-m-d', startDatetimeLocalTimezone)";print_r(date('Y-m-d', $startDatetimeLocalTimezone));echo "\n";
+            
+
+            if( date('Y-m-d', $startDatetimeLocalTimezone) ==  $filter_date){
+                echo "si se agrego";
+                $hours_available[] = date('H:i', $startDatetimeLocalTimezone);
+            }
+            
         }
-
-        echo "hours_available despues del if =";var_dump($hours_available);echo "\n";
+        
+        
         sort($hours_available);
 
         if (!is_null($hours_available)) {
