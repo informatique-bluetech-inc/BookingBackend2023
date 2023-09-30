@@ -65,8 +65,11 @@ class ReservationBluetechController
 
         echo "filter_date=";var_dump($filter_date);echo "\n";
 
+        
+
         foreach ($slots[2]->slots as $item) {
             echo "item->end =";var_dump($item->end );echo "\n";
+            echo "noha entrado if del tiempo =";var_dump(date('Y-m-d', strtotime($item->end . " UTC")));echo "\n";
             if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
                 echo "Entro al if del tiempo =";var_dump(date('Y-m-d', strtotime($item->end . " UTC")));echo "\n";
                 $time = date('H:i', strtotime($item->start.'+1 hour'));
