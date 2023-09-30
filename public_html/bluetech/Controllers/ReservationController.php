@@ -61,12 +61,19 @@ class ReservationBluetechController
         }
         $hours_available = [];
 
-        
+        //echo "slots[2]=";var_dump($slots[2]);echo "\n";
+
+        //echo "filter_date=";var_dump($filter_date);echo "\n";
+
+        echo "hours_available antes del if =";var_dump($hours_available);echo "\n";
+
         foreach ($slots[2]->slots as $item) {
-           
+            //echo "item->end =";var_dump($item->end );echo "\n";
+            //echo "noha entrado if del tiempo =";var_dump(date('Y-m-d', strtotime($item->end . " UTC")));echo "\n";
             if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
-                
+                //echo "Entro al if del tiempo =";var_dump(date('Y-m-d', strtotime($item->end . " UTC")));echo "\n";
                 $time = date('H:i', strtotime($item->start.'+1 hour'));
+                echo "time =";var_dump($time);echo "\n";
                 if(!in_array($time, $hours_available)){
                     $hours_available[] = $time;
                 }
@@ -74,6 +81,7 @@ class ReservationBluetechController
 
         }
 
+        echo "hours_available despues del if =";var_dump($hours_available);echo "\n";
         sort($hours_available);
 
         if (!is_null($hours_available)) {
