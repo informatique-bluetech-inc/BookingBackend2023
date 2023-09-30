@@ -49,10 +49,6 @@ class ReservationBluetechController
 
     static public function timeAvailableSlots($device_type, $filter_date): void
     {
-
-        //$filter_date;//hay que convertir esto en utc
-        //$filter_date = gmdate('Y-m-d', strtotime($filter_date));
-
         $slots = self::fetchAvailableSlots($device_type);
       
         if (!($slots[1] == 200 || $slots[1] == 201)) {
@@ -64,7 +60,6 @@ class ReservationBluetechController
             return;
         }
         $hours_available = [];
-
         /*foreach ($slots[2]->slots as $item) {
             if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
                 $time = date('H:i', strtotime($item->start.'+1 hour'));
@@ -73,29 +68,19 @@ class ReservationBluetechController
                 }
             }
         }*/
-
         date_default_timezone_set((string) $slots[2]->storeTimeZone);
 
-
-        foreach ($slots[2]->slots as $item) {
+        foreach ($slots[2]->slots as $item) {//iterates every available datetime
             $startDatetimeUtcTimezone = strtotime ($item->start);
             $startDatetimeLocalTimezone = date('Y-m-d H:i:s', $startDatetimeUtcTimezone);
-            //echo "startDatetimeUtcTimezone";print_r($startDatetimeUtcTimezone);echo "\n";
-            //echo "startDatetimeLocalTimezone";print_r($startDatetimeLocalTimezone);echo "\n";
-            //echo "filter_date";print_r($filter_date);echo "\n";
-            //echo "date('Y-m-d', startDatetimeLocalTimezone)";print_r(date('Y-m-d', strtotime($startDatetimeLocalTimezone)));echo "\n";
             
-
             if( date('Y-m-d', strtotime($startDatetimeLocalTimezone)) ==  $filter_date){
-                //echo "Se ha agregado la hora disponible = ".$startDatetimeLocalTimezone;
+                //echo "Available datetime added = ".$startDatetimeLocalTimezone;
                 $hours_available[] = date('H:i', strtotime($startDatetimeLocalTimezone));
             } else {
-                //echo "No se ha agregado la hora disponible = ".$startDatetimeLocalTimezone;
+                //echo "Available datetime not added, its incorrect date = ".$startDatetimeLocalTimezone;
             }
-            
         }
-        
-        
         sort($hours_available);
 
         if (!is_null($hours_available)) {

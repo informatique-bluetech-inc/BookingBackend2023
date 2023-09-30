@@ -60,18 +60,29 @@ class ReservationController
             return;
         }
         $hours_available = [];
-
-        foreach ($slots[2]->slots as $item) {
+        /*foreach ($slots[2]->slots as $item) {
             if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
                 $time = date('H:i', strtotime($item->start.'+1 hour'));
                 if(!in_array($time, $hours_available)){
                     $hours_available[] = $time;
                 }
             }
+        }*/
+        date_default_timezone_set((string) $slots[2]->storeTimeZone);
 
+        foreach ($slots[2]->slots as $item) {//iterates every available datetime
+            $startDatetimeUtcTimezone = strtotime ($item->start);
+            $startDatetimeLocalTimezone = date('Y-m-d H:i:s', $startDatetimeUtcTimezone);
+            
+            if( date('Y-m-d', strtotime($startDatetimeLocalTimezone)) ==  $filter_date){
+                //echo "Available datetime added = ".$startDatetimeLocalTimezone;
+                $hours_available[] = date('H:i', strtotime($startDatetimeLocalTimezone));
+            } else {
+                //echo "Available datetime not added, its incorrect date = ".$startDatetimeLocalTimezone;
+            }
         }
         sort($hours_available);
-        
+
         if (!is_null($hours_available)) {
             echo json_encode(["correlationId" => $slots[2]->correlationId, "hours" => $hours_available]);
         } else {
