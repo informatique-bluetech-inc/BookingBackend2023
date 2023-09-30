@@ -80,15 +80,17 @@ class ReservationBluetechController
         foreach ($slots[2]->slots as $item) {
             $startDatetimeUtcTimezone = strtotime ($item->start);
             $startDatetimeLocalTimezone = date('Y-m-d H:i:s', $startDatetimeUtcTimezone);
-            echo "startDatetimeUtcTimezone";print_r($startDatetimeUtcTimezone);echo "\n";
-            echo "startDatetimeLocalTimezone";print_r($startDatetimeLocalTimezone);echo "\n";
-            echo "filter_date";print_r($filter_date);echo "\n";
-            echo "date('Y-m-d', startDatetimeLocalTimezone)";print_r(date('Y-m-d', strtotime($startDatetimeLocalTimezone)));echo "\n";
+            //echo "startDatetimeUtcTimezone";print_r($startDatetimeUtcTimezone);echo "\n";
+            //echo "startDatetimeLocalTimezone";print_r($startDatetimeLocalTimezone);echo "\n";
+            //echo "filter_date";print_r($filter_date);echo "\n";
+            //echo "date('Y-m-d', startDatetimeLocalTimezone)";print_r(date('Y-m-d', strtotime($startDatetimeLocalTimezone)));echo "\n";
             
 
             if( date('Y-m-d', strtotime($startDatetimeLocalTimezone)) ==  $filter_date){
-                echo "si se agrego";
+                //echo "Se ha agregado la hora disponible = ".$startDatetimeLocalTimezone;
                 $hours_available[] = date('H:i', strtotime($startDatetimeLocalTimezone));
+            } else {
+                //echo "No se ha agregado la hora disponible = ".$startDatetimeLocalTimezone;
             }
             
         }
