@@ -88,7 +88,7 @@ class ReservationBluetechController
 
             if( date('Y-m-d', strtotime($startDatetimeLocalTimezone)) ==  $filter_date){
                 echo "si se agrego";
-                $hours_available[] = date('H:i', $startDatetimeLocalTimezone);
+                $hours_available[] = date('H:i', strtotime($startDatetimeLocalTimezone));
             }
             
         }
