@@ -12,7 +12,7 @@ class Config
             "REST_CERT_PASS" => "Subject-Gawk7",//change
             "REST_ACCOUNT_ID" => "bluetech-apple@infotechcorporation.com",//change
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
-            "REST_AUTH_TOKEN_APPLE" => "3bfb5a0e-5fc3-4a5b-8436-d128bf6a643k",//change
+            "REST_AUTH_TOKEN_APPLE" => "5b3f88df-6965-446c-ad08-3cba8eeb377d",//change
             "REST_AUTH_TOKEN" => "",
             "REST_SoldTo" => "0000023532",//change
             "REST_ShipTo" => "0000023532",//change
