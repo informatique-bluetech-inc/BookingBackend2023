@@ -16,17 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   header('Content-Type: text/plain');
   die();
 }
-/*header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
 header('Content-Type: application/json');
-*/
 
-$http_origin = $_SERVER['HTTP_ORIGIN'];
 
-if ($http_origin == "https://main.dqhn5dlsib64o.amplifyapp.com/")
-{  
-    //header("Access-Control-Allow-Origin: $http_origin");
-}
 
 
 
