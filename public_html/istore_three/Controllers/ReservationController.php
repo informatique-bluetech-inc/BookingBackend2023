@@ -3,6 +3,9 @@ namespace Controllers;
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
 
+require_once __DIR__."/../Helpers/LogMsg.php";
+use Helpers\LogMsg;
+
 use DateInterval;
 use DatePeriod;
 use DateTime;
@@ -146,12 +149,13 @@ class ReservationController
 
     static public function create(): void
     {
+        LogMsg::message("Started create() function ");
         AuthController::validateToken();
 
         $config = new ConfigModel();
 
         $request = json_decode(file_get_contents('php://input'), true);
-
+        LogMsg::message("Request = ".$request);
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
         $date_appointment = date("Y-m-d\TH:i:s.000\Z", strtotime($request["appointment"] . " +4 hours"));
@@ -173,6 +177,7 @@ class ReservationController
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
         ];
+        LogMsg::message("Request headers = ".$request_headers);
 
         $postData ='
                     {
@@ -213,6 +218,7 @@ class ReservationController
                         "governmentId": ""
                     }
                     }';
+        LogMsg::message("Post data = ".$postData);
 
 
         $ch = curl_init();
@@ -225,10 +231,12 @@ class ReservationController
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-
+        
         $result = curl_exec($ch);
+        
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $data = json_decode($result);
+        LogMsg::message("data response from apple = ".$data);
       
         if ($result === false) {
             echo 'Curl error: ' . curl_error($ch);

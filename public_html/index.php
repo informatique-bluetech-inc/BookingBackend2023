@@ -6,6 +6,7 @@ require_once __DIR__."/istore_three/Controllers/RutasController.php";
 require_once __DIR__."/infotechcorp/Controllers/RutasController.php";
 
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   header('Access-Control-Allow-Origin: *');
   header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
@@ -15,9 +16,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
   header('Content-Type: text/plain');
   die();
 }
-header('Access-Control-Allow-Origin: *');
+/*header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
 header('Content-Type: application/json');
+*/
+
+$http_origin = $_SERVER['HTTP_ORIGIN'];
+
+if ($http_origin == "https://main.dqhn5dlsib64o.amplifyapp.com/")
+{  
+    header("Access-Control-Allow-Origin: $http_origin");
+}
+
+
 
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 
@@ -43,4 +54,4 @@ if(count(array_filter($arrayRutas)) == 2){
        $router->index();
      }
 }
-
+?>
