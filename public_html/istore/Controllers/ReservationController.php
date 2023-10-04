@@ -230,7 +230,7 @@ class ReservationController
         $result = curl_exec($ch);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $data = json_decode($result);
-        LogMsg::message("response from apple api data=".$data);
+        LogMsg::message("response from apple api data=".$result);
       
         if (curl_exec($ch) === false) {
             echo 'Curl error: ' . curl_error($ch);
