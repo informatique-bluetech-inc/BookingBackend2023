@@ -52,6 +52,8 @@ class ReservationController
     static public function timeAvailableSlots($device_type, $filter_date): void
     {
         $slots = self::fetchAvailableSlots($device_type);
+
+        var_dump($slots);die;
       
         if (!($slots[1] == 200 || $slots[1] == 201)) {
             $response = [
@@ -115,10 +117,6 @@ class ReservationController
         foreach ($slots[2]->slots as $listDate) {
             $arr[] = date('Y-m-d', strtotime($listDate->start . " UTC"));
         }
-
-        var_dump($slots[2]);  
-          
-        die;
 
         foreach (array_unique($arr) as $key => $value) {
             //echo $value->format('Y-m-d').'<br>';
