@@ -239,7 +239,7 @@ class ReservationController
                 "status" => $statusCode,
                 "response" => $data
             ];
-            LogMsg::message("response ". $response);
+            
             echo json_encode($response);
         }
         curl_close($ch);
