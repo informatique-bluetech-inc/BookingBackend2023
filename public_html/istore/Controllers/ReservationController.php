@@ -53,7 +53,7 @@ class ReservationController
     {
         $slots = self::fetchAvailableSlots($device_type);
 
-        var_dump($slots);die;
+        
       
         if (!($slots[1] == 200 || $slots[1] == 201)) {
             $response = [
@@ -85,6 +85,7 @@ class ReservationController
                 //echo "Available datetime not added, its incorrect date = ".$startDatetimeLocalTimezone;
             }
         }
+        var_dump($hours_available);die;
         sort($hours_available);
 
         if (!is_null($hours_available)) {
