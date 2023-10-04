@@ -116,10 +116,8 @@ class ReservationController
             $arr[] = date('Y-m-d', strtotime($listDate->start . " UTC"));
         }
 
-        var_dump($slots[2]->slots);  
-        
-
-        var_dump($arr[]);  
+        var_dump($slots[2]);  
+          
         die;
 
         foreach (array_unique($arr) as $key => $value) {
