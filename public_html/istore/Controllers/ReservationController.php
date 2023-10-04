@@ -78,6 +78,8 @@ class ReservationController
             $startDatetimeUtcTimezone = strtotime ($item->start);
             $startDatetimeLocalTimezone = date('Y-m-d H:i:s', $startDatetimeUtcTimezone);
             
+            echo "iterando ".$item->start.". ";var_dump(date('Y-m-d', strtotime($startDatetimeLocalTimezone)));
+
             if( date('Y-m-d', strtotime($startDatetimeLocalTimezone)) ==  $filter_date){
                 //echo "Available datetime added = ".$startDatetimeLocalTimezone;
                 $hours_available[] = date('H:i', strtotime($startDatetimeLocalTimezone));
