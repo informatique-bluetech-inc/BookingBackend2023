@@ -39,6 +39,8 @@ class ReservationController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
+        LogMsg::message("response from apple api data time=".$result);  
+        die;
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($statusCode == 200 || $statusCode == 201) {
             return [$ch, $statusCode, json_decode($result)];
@@ -215,7 +217,7 @@ class ReservationController
                     }
                     }';
 
-
+        
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $config->REST_CERT_PATH);
