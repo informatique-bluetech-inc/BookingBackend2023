@@ -39,8 +39,7 @@ class ReservationController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
-        var_dump($result);  
-        die;
+        
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($statusCode == 200 || $statusCode == 201) {
             return [$ch, $statusCode, json_decode($result)];
@@ -116,6 +115,9 @@ class ReservationController
         foreach ($slots[2]->slots as $listDate) {
             $arr[] = date('Y-m-d', strtotime($listDate->start . " UTC"));
         }
+
+        var_dump($arr[]);  
+        die;
 
         foreach (array_unique($arr) as $key => $value) {
             //echo $value->format('Y-m-d').'<br>';
