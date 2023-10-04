@@ -39,7 +39,7 @@ class ReservationController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
-        LogMsg::message("response from apple api data time=".$result);  
+        var_dump($result);  
         die;
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($statusCode == 200 || $statusCode == 201) {
