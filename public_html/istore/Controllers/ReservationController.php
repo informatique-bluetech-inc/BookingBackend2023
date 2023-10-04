@@ -6,6 +6,9 @@ use DateInterval;
 use DatePeriod;
 use DateTime;
 use Models\ConfigModel;
+require_once __DIR__."/../Helpers/LogMsg.php";
+
+use Helpers\LogMsg;
 
 class ReservationController
 {
@@ -228,6 +231,7 @@ class ReservationController
         $result = curl_exec($ch);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $data = json_decode($result);
+        LogMsg::message("response from apple api data=".$data);
       
         if (curl_exec($ch) === false) {
             echo 'Curl error: ' . curl_error($ch);
@@ -236,6 +240,7 @@ class ReservationController
                 "status" => $statusCode,
                 "response" => $data
             ];
+            LogMsg::message("response ". $response);
             echo json_encode($response);
         }
         curl_close($ch);
