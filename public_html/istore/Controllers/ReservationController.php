@@ -1,7 +1,6 @@
 <?php
 namespace Controllers;
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
+
 use DateInterval;
 use DatePeriod;
 use DateTime;

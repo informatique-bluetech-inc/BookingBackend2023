@@ -1,7 +1,6 @@
 <?php
 namespace Controllers;
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
+
 
 require_once __DIR__."/../Helpers/LogMsg.php";
 use Helpers\LogMsg;
