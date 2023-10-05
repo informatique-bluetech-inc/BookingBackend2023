@@ -73,7 +73,7 @@ class AuthController {
         $database = new AccessData();
         $sql = "select id, token, token_updated_at from store_tokens 
         where store = '$storeName' limit 1";
-        $messageLog[] = "Sql ".$sql;
+        $messageLog[] = "Sql = ".$sql;
 
         if($database->retrieveData($sql) == false){
             $messageLog[] = "Error message  ".$database->errorMessage;
@@ -86,7 +86,7 @@ class AuthController {
             return [ "status" => 500, "response" => "There is no token saved for the store", "log" => $messageLog ];
         }
 
-        $messageLog[] = "Data retrieved  ".json_encode($database->retrievedRecords[0]);
+        $messageLog[] = "Data retrieved  = ".json_encode($database->retrievedRecords[0]);
         $storedTokenUpdatedAt = $database->retrievedRecords[0]["token_updated_at"];
         $storedToken = $database->retrievedRecords[0]["token"];
         $storedTokenId = $database->retrievedRecords[0]["id"];
@@ -95,7 +95,7 @@ class AuthController {
         $currentDate = strtotime(date('Y-m-d H:i:s'));
         $minutes_diff = strtotime($storedTokenUpdatedAt);
         $minutesLastUpdate = round(abs($currentDate -  $minutes_diff) / 60);
-        $messageLog[] = "minutesLastUpdate  ".$minutesLastUpdate;
+        $messageLog[] = "MinutesLastUpdate  = ".$minutesLastUpdate;
 
         if($minutesLastUpdate < 30){
             http_response_code(201);
@@ -109,9 +109,9 @@ class AuthController {
         $storeAppleInfoService = new StoreAppleInfo();
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
         $url = "https://api-partner-connect.apple.com/api/authenticate/token";
-        $messageLog[] = "url  ".$url;
+        $messageLog[] = "Apple url = ".$url;
 
-        $request_headers = array(
+        $requestHeaders = array(
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
             'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
             'X-Apple-Trace-ID: ' ,
@@ -120,13 +120,13 @@ class AuthController {
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
         );
-        $messageLog[] = "request_headers  ".json_encode($request_headers);
+        $messageLog[] = "RequestHeaders  = ".json_encode($requestHeaders);
 
         $postData = [
             'authToken' => $storedToken,
             'userAppleId' => $storeInfo["REST_ACCOUNT_ID"]
         ];
-        $messageLog[] = "postData  ".json_encode($postData);
+        $messageLog[] = "PostData = ".json_encode($postData);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -137,7 +137,7 @@ class AuthController {
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
@@ -150,6 +150,13 @@ class AuthController {
         }
 
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if(! ($this->isResponse2xx($statusCode)) ){
+            $messageLog[] = "This is error from apple = ". json_encode(curl_error($ch));
+            http_response_code($statusCode);
+            return [ "status" => $statusCode, "response" => "Error trying to consume apple api", "log"=> $messageLog];
+        }
+
 
         $newToken = json_encode($result);
         $now = date("Y-m-d H:i:s");
@@ -172,6 +179,14 @@ class AuthController {
             "log" => $messageLog
         ];
 
+    }
+
+    function isResponse2xx($statusCode){
+        $pieces = str_split($statusCode);
+        $firstElement = $pieces[0];
+        
+        if($firstElement == 2) return true;
+        else return false;
     }
     
 }
