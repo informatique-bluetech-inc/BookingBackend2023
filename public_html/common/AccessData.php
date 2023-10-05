@@ -68,7 +68,7 @@ class AccessData
             $i = 0;
             $temporalArray = array();
             while($row = $result->fetch(PDO::FETCH_ASSOC)){
-                $temporalArray[$i] = array_map('utf8_encode', $row);
+                $temporalArray[$i] = $row;//array_map('utf8_encode', $row); deprecated
                 $i++;
             }
             $this->retrievedRecords = $temporalArray;
