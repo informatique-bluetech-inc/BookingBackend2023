@@ -1,4 +1,6 @@
 <?php
+
+die;
 require_once __DIR__."/bluetech/Controllers/RutasController.php";
 require_once __DIR__."/istore/Controllers/RutasController.php";
 require_once __DIR__."/istore_two/Controllers/RutasController.php";

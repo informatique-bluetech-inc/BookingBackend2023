@@ -1,4 +1,6 @@
 <?php
+
+die;
 require_once __DIR__."/common/RutasController.php";
 
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
