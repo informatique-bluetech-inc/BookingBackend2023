@@ -64,6 +64,7 @@ class AuthController {
     }
 
 
+
     /** 
     * This method insert a token manually, for the first time
     */
@@ -106,6 +107,8 @@ class AuthController {
     }
 
 
+
+    
     /** 
     * this method validate with apple api if a store token is valid
     */
