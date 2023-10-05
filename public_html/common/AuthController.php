@@ -22,7 +22,7 @@ class AuthController {
         $messageLog = $messageLog . "Started ".$clazzMethod. " with parameters ".$storeName."\n";
         
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
-        $messageLog = $messageLog . "This is the store info from database file ".print_r($storeInfo)."\n";
+        $messageLog = $messageLog . "This is the store info from database file ".json_encode($storeInfo)."\n";
 
         $url = $storeInfo["REST_BASE_URL"] . $storeInfo["REST_AUTH_PATH"] . "/authenticate/check";
         $messageLog = $messageLog . "This is the apple api url ".$url."\n";
@@ -32,7 +32,7 @@ class AuthController {
             'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
         );
 
-        $messageLog = $messageLog . "This is the header for request validate token ".print_r($requestHeaders)."\n";
+        $messageLog = $messageLog . "This is the header for request validate token ".json_encode($requestHeaders)."\n";
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -44,7 +44,7 @@ class AuthController {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
-        $messageLog = $messageLog . "this is response from apple = ". print_r($result)."\n";
+        $messageLog = $messageLog . "this is response from apple = ". json_encode($result)."\n";
 
         if($result === false){
             http_response_code(500);
