@@ -29,7 +29,7 @@ class AuthController {
 
         $requestHeaders = array(
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
-            'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
+            //'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
         );
 
         $messageLog[] = "This is the header for request validate token ".json_encode($requestHeaders)."\n";
@@ -42,7 +42,7 @@ class AuthController {
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        //curl_setopt($ch, CURLOPT_FAILONERROR, false);
+        curl_setopt($ch, CURLOPT_FAILONERROR, false);
 
         $result = curl_exec($ch);
         $messageLog[] = "this is response from apple = ". json_encode($result)."\n";
