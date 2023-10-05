@@ -13,26 +13,26 @@ class AuthController {
     */
     public function check($storeName): array {
 
-        $messageLog = "";
+        $messageLog = array();
 
         $logger = new Logger();
         $storeAppleInfoService = new StoreAppleInfo();
 
         $clazzMethod = "AuthController.check";
-        $messageLog = $messageLog . "Started ".$clazzMethod. " with parameters ".$storeName."\n";
+        $messageLog[] = "Started ".$clazzMethod. " with parameters ".$storeName."\n";
         
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
-        $messageLog = $messageLog . "This is the store info from database file ".json_encode($storeInfo)."\n";
+        $messageLog[] = "This is the store info from database file ".json_encode($storeInfo)."\n";
 
         $url = $storeInfo["REST_BASE_URL"] . $storeInfo["REST_AUTH_PATH"] . "/authenticate/check";
-        $messageLog = $messageLog . "This is the apple api url ".$url."\n";
+        $messageLog[] =  "This is the apple api url ".$url."\n";
 
         $requestHeaders = array(
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
             'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
         );
 
-        $messageLog = $messageLog . "This is the header for request validate token ".json_encode($requestHeaders)."\n";
+        $messageLog[] = "This is the header for request validate token ".json_encode($requestHeaders)."\n";
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -44,7 +44,7 @@ class AuthController {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
-        $messageLog = $messageLog . "this is response from apple = ". json_encode($result)."\n";
+        $messageLog[] = "this is response from apple = ". json_encode($result)."\n";
 
         if($result === false){
             http_response_code(500);
