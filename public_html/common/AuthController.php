@@ -28,7 +28,7 @@ class AuthController {
         $messageLog[] =  "This is the apple api url ".$url."\n";
 
         $requestHeaders = array(
-            'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
+            //'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
             //'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
         );
 
