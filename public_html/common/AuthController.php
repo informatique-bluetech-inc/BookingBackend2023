@@ -72,10 +72,13 @@ class AuthController {
         $request = json_decode(file_get_contents('php://input'), TRUE);
         
         if(!(isset($request['newToken']))  || !(isset($request['storeName']))){
+            echo "si entro en el if";
             http_response_code(400);
             return [ "status" => 400, "response" => "There is no token or store" ];
+        }else{
+            echo "NO entro en el if, la data esta ok";
         }
-        var_dump($request);die;
+        die;
 
         $database = new AccessData();
         $clazzMethod = "AuthController.updateTokenManually";
