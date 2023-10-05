@@ -42,6 +42,15 @@ class RutasController {
                 }
             }
 
+            if(array_filter($arrayRutas)[2] == "update_token"){
+                if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+                    $controller = new AuthController();
+                    $result = $controller->updateTokenManually($storeName);
+                    header('Content-Type: application/json; charset=utf-8');
+                    echo json_encode($result);
+                }
+            }
+
             /*if(str_contains(array_filter($arrayRutas)[2], "date-available-slots")){
                 
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
