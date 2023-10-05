@@ -47,7 +47,6 @@ class RutasController {
 
                     $controller = new AuthController();
                     $result = $controller->updateTokenManually($storeName);
-                    echo "esto no sale";
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($result);
                 }
