@@ -3,7 +3,7 @@ class StoreAppleInfo{
 
     public function getStoreAppleInfoByStore($store): array {
 
-        if(file_exists(__DIR__."/../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem")){
+        if(file_exists(dirname(__FILE__,2)."/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem")){
             echo "el archivo no existe";
             die;
         }
