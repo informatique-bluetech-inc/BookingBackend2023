@@ -5,7 +5,8 @@ class StoreAppleInfo{
 
         $storeBlueTech =
         [
-            "REST_CERT_PATH" => dirname(__FILE__, 1) . "/../AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
+            //"REST_CERT_PATH" => dirname(__FILE__, 1) . "/../AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
+            "REST_CERT_PATH" =>realpath(__DIR__."/../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem"),
             "REST_SSL_KEY" => dirname(__FILE__, 1) . "/../privatekey.pem",
             "REST_CERT_PASS" => "BluetechAppleGSX2022",
             "REST_ACCOUNT_ID" => "gsxapi@ibluetech.ca",

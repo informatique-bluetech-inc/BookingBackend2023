@@ -43,8 +43,13 @@ class AuthController {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
+
+        if($result === false){
+            http_response_code(500);
+            return [ "status" => 500, "response" => "Error trying to consume apple api"];
+        }
+
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        
         $logger->writeLog("This is the response from apple ".$result, $clazzMethod);
 
         http_response_code($statusCode);
