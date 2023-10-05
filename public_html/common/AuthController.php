@@ -165,7 +165,7 @@ class AuthController {
 
         $responseApple = ($result);
         $now = date("Y-m-d H:i:s");
-        
+        var_dump($responseApple);die;
         $sql = "update store_tokens set token = '".$responseApple['authToken']."' , token_updated_at = '$now' 
         WHERE id = ".$storedTokenId;
 
