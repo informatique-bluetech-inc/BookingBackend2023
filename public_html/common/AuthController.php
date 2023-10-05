@@ -78,12 +78,12 @@ class AuthController {
         if($database->retrieveData($sql) == false){
             $messageLog[] = "Error message  ".$database->errorMessage;
             http_response_code(500);
-            return [ "status" => 500, "response" => "Error getting data from database" ];
+            return [ "status" => 500, "response" => "Error getting data from database", "log" => $messageLog ];
         }
 
         if(count($database->retrievedRecords) < 1){
             http_response_code(500);
-            return [ "status" => 500, "response" => "There is no token saved for the store" ];
+            return [ "status" => 500, "response" => "There is no token saved for the store", "log" => $messageLog ];
         }
 
         $messageLog[] = "Data retrieved  ".json_encode($database->retrievedRecords[0]);
@@ -101,7 +101,8 @@ class AuthController {
             http_response_code(201);
             return $response = [
                 "status" => 201,
-                "msg" => "No need to refresh token in 30 minutes",
+                "response" => "No need to refresh token in 30 minutes",
+                "log" => $messageLog
             ];
         }
 
@@ -156,9 +157,11 @@ class AuthController {
         $sql = "update store_tokens set token = '$newToken', token_updated_at = '$now' 
         WHERE id = $storedTokenId";
 
+        $messageLog[] = "sql = ". $sql;
+
         if($database->executeQueryOperation($sql) == false){
             http_response_code(500);
-            return [ "status" => 500, "response" => "Error setting data to database",
+            return [ "status" => 500, "response" => "Error saving new token in database",
                 "log" => $messageLog ];
         }
 
