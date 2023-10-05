@@ -69,12 +69,18 @@ class AuthController {
     */
     public function updateTokenManually($storeName): array {
 
+        $request = json_decode(file_get_contents('php://input'), TRUE);
+        if(!(isset($request['newToken']))  || !(isset($request['storeName']))){
+            http_response_code(400);
+            return [ "status" => 400, "response" => "There is no token or store" ];
+        }
+        
         $database = new AccessData();
         $clazzMethod = "AuthController.updateTokenManually";
         $messageLog = array();
         $messageLog[] = "Started ".$clazzMethod. " with parameters ".$storeName;
 
-        $request = json_decode(file_get_contents('php://input'), TRUE);
+        
         $now = date("Y-m-d H:i:s");
 
         $sql = "update store_tokens set token = '".$request['newToken']."' , token_updated_at = '".$now."' 
