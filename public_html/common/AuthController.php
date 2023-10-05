@@ -113,7 +113,7 @@ class AuthController {
         $request_headers = array(
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
             'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
-            'X-Apple-Trace-ID: ' . $storeInfo["REST_AUTH_TOKEN"],
+            'X-Apple-Trace-ID: ' ,
             'X-Apple-Service-Version: v5',
             'Content-Type: application/json',
             'Accept: application/json',
@@ -140,20 +140,17 @@ class AuthController {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
-        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $messageLog[] = "This is response from apple = ". json_encode($result);
 
-        $data = json_decode($result);
-        $response = [
-            "status" => $statusCode,
-            "response" => $data
-        ];
-
-        if($statusCode != 200 && $statusCode != 201){
-            http_response_code($statusCode);
-            return $response;
+        if($result === false){
+            $messageLog[] = "This is error from apple = ". json_encode(curl_error($ch));
+            http_response_code(500);
+            return [ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog];
         }
 
-        $newToken = $data;
+        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        $newToken = json_encode($result);
         $now = date("Y-m-d H:i:s");
         
         $sql = "update store_tokens set token = '$newToken', token_updated_at = '$now' 
@@ -164,10 +161,10 @@ class AuthController {
             return [ "status" => 500, "response" => "Error setting data to database" ];
         }
 
-        http_response_code(200);
+        http_response_code($statusCode);
         return [
-            "status" => 200,
-            "response" => "New token was saved in database"
+            "status" => $statusCode,
+            "response" => "New token was refreshed and saved in database"
         ];
 
     }
