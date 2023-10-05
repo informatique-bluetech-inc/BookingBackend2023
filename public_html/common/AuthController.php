@@ -70,11 +70,12 @@ class AuthController {
     public function updateTokenManually($storeName): array {
 
         $request = json_decode(file_get_contents('php://input'), TRUE);
+        var_dump($request);die;
         if(!(isset($request['newToken']))  || !(isset($request['storeName']))){
             http_response_code(400);
             return [ "status" => 400, "response" => "There is no token or store" ];
         }
-        
+
         $database = new AccessData();
         $clazzMethod = "AuthController.updateTokenManually";
         $messageLog = array();
