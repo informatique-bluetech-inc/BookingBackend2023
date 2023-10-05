@@ -45,8 +45,8 @@ class StoreAppleInfo{
 
         $storeInfoTechCorp =
         [
-            "REST_CERT_PATH" => __DIR__ . "/../infotechstore/Config/AppleCare-Partner-0000023532.Prod.apple.com.chain.pem",//change
-            "REST_SSL_KEY" => __DIR__ . "/../infotechstore/Config/privatekey.pem",
+            "REST_CERT_PATH" => __DIR__ . "/../infotechcorp/Config/AppleCare-Partner-0000023532.Prod.apple.com.chain.pem",
+            "REST_SSL_KEY" => __DIR__ . "/../infotechcorp/Config/privatekey.pem",
             "REST_CERT_PASS" => "Subject-Gawk7",//change
             "REST_ACCOUNT_ID" => "bluetech-apple@infotechcorporation.com",
             "REST_SoldTo" => "0000023532",
