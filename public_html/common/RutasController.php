@@ -12,13 +12,14 @@ class RutasController {
 
         if(count(array_filter($arrayRutas)) == 1){
             if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
-                echo "index";die;
+                echo "index";
                 header('Content-Type: application/json; charset=utf-8');
                 $response = [
                     "status" => 201,
                     "msg" => "Welcome to ".$storeName." API ",
                 ];
                 echo json_encode($response);
+                die;
             }
         }
 
@@ -27,33 +28,35 @@ class RutasController {
 
             if(array_filter($arrayRutas)[2] == "check"){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
-                    echo "check";die;
+                    echo "check";
                     $controller = new AuthController();
                     $result = $controller->checkCertificates($storeName);
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($result);
+                    die;
                 }
             }
 
             if(array_filter($arrayRutas)[2] == "validate_token"){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
-                    echo "validate_token";die;
+                    echo "validate_token";
                     $controller = new AuthController();
                     $result =  $controller->refreshToken($storeName);
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($result);
+                    die;
                 }
             }
 
             if(array_filter($arrayRutas)[2] == "update_token"){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
-                    echo "update_token";die;
+                    echo "update_token";
                     $controller = new AuthController();
                     $result = $controller->updateTokenManually($storeName);
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($result);
-                    
+                    die;
 
                 }
             }
