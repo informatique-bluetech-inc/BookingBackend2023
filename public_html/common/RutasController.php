@@ -45,11 +45,8 @@ class RutasController {
             if(array_filter($arrayRutas)[2] == "update_token"){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
-                    $bodyRaw = file_get_contents("php://input");
-                    $body = json_decode($bodyRaw);
-
                     $controller = new AuthController();
-                    $result = $controller->updateTokenManually($storeName, $body);
+                    $result = $controller->updateTokenManually($storeName);
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($result);
                 }

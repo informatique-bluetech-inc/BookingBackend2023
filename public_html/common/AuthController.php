@@ -67,8 +67,12 @@ class AuthController {
     /** 
     * This method insert a token manually, for the first time
     */
-    public function updateTokenManually($storeName, $body): array {
+    public function updateTokenManually($storeName): array {
         
+        $bodyRaw = file_get_contents("php://input");
+        var_dump($bodyRaw);die;
+        $body = json_decode($bodyRaw);
+
         if( !(isset($body->token))  ){
             http_response_code(400);
             return [ "status" => 400, "response" => "There is no token" ];
