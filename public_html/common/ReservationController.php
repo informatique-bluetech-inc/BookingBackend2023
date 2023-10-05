@@ -20,12 +20,13 @@ class ReservationController{
         //get the slots available
         $messageLog[] = "Calling to fetchAllAvailableSlots()";
         $resultAvailableSlots = $this->fetchAllAvailableSlots($deviceType, $storeName);
-        $messageLog[] = $resultAvailableSlots["log"];
-        var_dump($messageLog);die;
+        //$messageLog[] = $resultAvailableSlots["log"];
+        
         $messageLog[] = "Finished calling to fetchAllAvailableSlots(). resultAvailableSlots = " . json_encode($resultAvailableSlots);
 
         if(! ($this->isResponse2xx($resultAvailableSlots["status"])) ){//if apple response is not ok
-            return $resultAvailableSlots;
+            return ["status"=>$resultAvailableSlots["status"], "response"=>$resultAvailableSlots["reponse"], 
+                "log"=>$messageLog];
         }
 
         $arrayTemporal = [];
