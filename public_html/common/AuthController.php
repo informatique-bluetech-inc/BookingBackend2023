@@ -87,6 +87,7 @@ class AuthController {
         }
 
         $messageLog[] = "Data retrieved  ".json_encode($database->retrievedRecords[0]);
+        var_dump($database->retrievedRecords[0]);die;
         $storedTokenUpdatedAt = $database->retrievedRecords[0]["token_updated_at"];
         $storedToken = $database->retrievedRecords[0]["token"];
         $storedTokenId = $database->retrievedRecords[0]["id"];
