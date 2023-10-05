@@ -10,8 +10,8 @@ class StoreAppleInfo{
 
         $storeBlueTech =
         [
-            "REST_CERT_PATH" => __DIR__ . "../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
-            "REST_SSL_KEY" =>__DIR__."../bluetech/Config/privatekey.pem",
+            "REST_CERT_PATH" => __DIR__ . "../bluetech/config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
+            "REST_SSL_KEY" =>__DIR__."../bluetech/config/privatekey.pem",
             "REST_CERT_PASS" => "BluetechAppleGSX2022",
             "REST_ACCOUNT_ID" => "gsxapi@ibluetech.ca",
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
