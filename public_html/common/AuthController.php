@@ -65,49 +65,6 @@ class AuthController {
 
 
 
-    /** 
-    * This method insert a token manually, for the first time
-    */
-    public function updateTokenManually($storeName): array {
-        
-        $database = new AccessData();
-        $clazzMethod = "AuthController.updateTokenManually";
-        $messageLog = array();
-        $messageLog[] = "Started ".$clazzMethod. " with parameters ".$storeName;
-
-        $bodyRaw = file_get_contents("php://input");
-        $body = json_decode($bodyRaw, false);//false because return as object
-
-
-        if( !(isset($body->token))  ){
-            http_response_code(400);
-            return [ "status" => 400, "response" => "There is no token" ];
-        }
-        
-        $now = date("Y-m-d H:i:s");
-
-        $sql = "update store_tokens set token = '".$body->token."' , token_updated_at = '".$now."' 
-        WHERE store = '".$storeName."' ;";
-
-        $messageLog[] = "Sql = ".$sql;
-
-        if($database->executeQueryOperation($sql) == false){
-            http_response_code(500);
-            return [ "status" => 500, "response" => "Error updating new token in database",
-                "log" => $messageLog ];
-        }
-
-        if($database->quantityRowsAffected < 1){
-            $messageLog[] = "quantityRowsAffected = ".$database->quantityRowsAffected;
-            http_response_code(500);
-            return [ "status" => 500, "response" => "No records were affected", "log" => $messageLog ];
-        }
-
-        return ["status"=>200, "reponse"=>"Token was updated"];
-    }
-
-
-
     
     /** 
     * this method validate with apple api if a store token is valid
@@ -229,7 +186,53 @@ class AuthController {
 
     }
 
-    function isResponse2xx($statusCode){
+
+
+
+    /** 
+    * This method insert a token manually, for the first time
+    */
+    public function updateTokenManually($storeName): array {
+        
+        $database = new AccessData();
+        $clazzMethod = "AuthController.updateTokenManually";
+        $messageLog = array();
+        $messageLog[] = "Started ".$clazzMethod. " with parameters ".$storeName;
+
+        $bodyRaw = file_get_contents("php://input");
+        $body = json_decode($bodyRaw, false);//false because return as object
+
+
+        if( !(isset($body->token))  ){
+            http_response_code(400);
+            return [ "status" => 400, "response" => "There is no token" ];
+        }
+        
+        $now = date("Y-m-d H:i:s");
+
+        $sql = "update store_tokens set token = '".$body->token."' , token_updated_at = '".$now."' 
+        WHERE store = '".$storeName."' ;";
+
+        $messageLog[] = "Sql = ".$sql;
+
+        if($database->executeQueryOperation($sql) == false){
+            http_response_code(500);
+            return [ "status" => 500, "response" => "Error updating new token in database",
+                "log" => $messageLog ];
+        }
+
+        if($database->quantityRowsAffected < 1){
+            $messageLog[] = "quantityRowsAffected = ".$database->quantityRowsAffected;
+            http_response_code(500);
+            return [ "status" => 500, "response" => "No records were affected", "log" => $messageLog ];
+        }
+
+        return ["status"=>200, "reponse"=>"Token was updated"];
+    }
+
+
+
+    private function isResponse2xx($statusCode){
         $pieces = str_split($statusCode);
         $firstElement = $pieces[0];
         

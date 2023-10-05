@@ -57,14 +57,14 @@ class RutasController {
                 }
             }
 
-            /*if(str_contains(array_filter($arrayRutas)[2], "date-available-slots")){
+            if(str_contains(array_filter($arrayRutas)[2], "date-available-slots")){
                 
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 
                     if(isset($_GET["productCode"]) && is_string($_GET["productCode"])) {
 
                         $controller = new ReservationController();
-                        $controller->dateAvailableSlots(
+                        $controller->getDateAvailableSlots(
                             $storeName,
                             $_GET["productCode"]
                         );
@@ -83,7 +83,7 @@ class RutasController {
             }
 
 
-            if(str_contains(array_filter($arrayRutas)[2], "time-available-slots")){
+            /*if(str_contains(array_filter($arrayRutas)[2], "time-available-slots")){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 
                     if(isset($_GET["productCode"]) && is_string($_GET["productCode"])) {
