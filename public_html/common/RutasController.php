@@ -7,6 +7,8 @@ class RutasController {
 
     public function index( $storeName ): void
     {
+
+        echo "aaa";
         $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 
         if(count(array_filter($arrayRutas)) == 1){
