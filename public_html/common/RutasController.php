@@ -26,6 +26,7 @@ class RutasController {
 
             if(array_filter($arrayRutas)[2] == "check"){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
+                    echo "check";die;
                     $controller = new AuthController();
                     $result = $controller->checkCertificates($storeName);
                     header('Content-Type: application/json; charset=utf-8');
@@ -35,6 +36,7 @@ class RutasController {
 
             if(array_filter($arrayRutas)[2] == "validate_token"){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
+                    echo "validate_token";die;
                     $controller = new AuthController();
                     $result =  $controller->refreshToken($storeName);
                     header('Content-Type: application/json; charset=utf-8');
@@ -45,11 +47,12 @@ class RutasController {
             if(array_filter($arrayRutas)[2] == "update_token"){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
+                    echo "update_token";die;
                     $controller = new AuthController();
                     $result = $controller->updateTokenManually($storeName);
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($result);
-                    die;
+                    
 
                 }
             }
