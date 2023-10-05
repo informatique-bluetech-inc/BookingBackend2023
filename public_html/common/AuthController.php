@@ -71,6 +71,8 @@ class AuthController {
         
         $bodyRaw = file_get_contents("php://input");
         var_dump($bodyRaw);die;
+        echo "esto no sale";
+
         $body = json_decode($bodyRaw);
 
         if( !(isset($body->token))  ){
