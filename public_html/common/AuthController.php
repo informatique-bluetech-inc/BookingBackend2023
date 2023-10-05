@@ -71,7 +71,7 @@ class AuthController {
 
 
         $database = new AccessData();
-        $sql = "select token, token_updated_at from store_tokens 
+        $sql = "select id, token, token_updated_at from store_tokens 
         where store = '$storeName' limit 1";
         $messageLog[] = "Sql ".$sql;
 
