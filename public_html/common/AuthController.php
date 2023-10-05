@@ -87,7 +87,6 @@ class AuthController {
         }
 
         $messageLog[] = "Data retrieved  ".json_encode($database->retrievedRecords[0]);
-        var_dump($database->retrievedRecords[0]);die;
         $storedTokenUpdatedAt = $database->retrievedRecords[0]["token_updated_at"];
         $storedToken = $database->retrievedRecords[0]["token"];
         $storedTokenId = $database->retrievedRecords[0]["id"];
@@ -100,7 +99,7 @@ class AuthController {
 
         if($minutesLastUpdate < 30){
             http_response_code(201);
-            return $response = [
+            return [
                 "status" => 201,
                 "response" => "No need to refresh token in 30 minutes",
                 "log" => $messageLog
