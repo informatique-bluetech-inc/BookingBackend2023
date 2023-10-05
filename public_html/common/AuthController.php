@@ -83,7 +83,7 @@ class AuthController {
         $now = date("Y-m-d H:i:s");
 
         $sql = "update store_tokens set token = '".$body->newToken."' , token_updated_at = '".$now."' 
-        WHERE store = ".$storeName." ;";
+        WHERE store = '".$storeName."' ;";
 
         $messageLog[] = "Sql = ".$sql;
 
