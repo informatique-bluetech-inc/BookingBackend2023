@@ -10,10 +10,8 @@ class StoreAppleInfo{
 
         $storeBlueTech =
         [
-            //"REST_CERT_PATH" => dirname(__FILE__, 1) . "/../AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
-            "REST_CERT_PATH" =>realpath(__DIR__."/../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem"),
-            //"REST_SSL_KEY" => dirname(__FILE__, 1) . "/../privatekey.pem",
-            "REST_SSL_KEY" => realpath(__DIR__."/../bluetech/Config/privatekey.pem"),
+            "REST_CERT_PATH" => __DIR__ . "../bluetech/config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
+            "REST_SSL_KEY" =>__DIR__."../bluetech/config/privatekey.pem",
             "REST_CERT_PASS" => "BluetechAppleGSX2022",
             "REST_ACCOUNT_ID" => "gsxapi@ibluetech.ca",
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
@@ -28,8 +26,8 @@ class StoreAppleInfo{
 
         $storeiStore1 =
         [
-            "REST_CERT_PATH" => dirname(__FILE__, 1) . "/../AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
-            "REST_SSL_KEY" => dirname(__FILE__, 1) . "/../privatekey.pem",
+            "REST_CERT_PATH" => __DIR__ . "../istore/config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
+            "REST_SSL_KEY" => __DIR__ . "../istore/config/privatekey.pem",
             "REST_CERT_PASS" => "iStore07631Englewood",
             "REST_ACCOUNT_ID" => "service@istorestm.com",
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
