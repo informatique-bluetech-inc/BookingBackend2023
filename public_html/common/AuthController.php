@@ -64,30 +64,33 @@ class AuthController {
     * this method validate with apple api if a store token is valid
     */
     public function refreshToken($storeName): array {
-        $logger = new Logger();
+
         $clazzMethod = "AuthController.refreshToken";
-        $logger->writeLog("Started ".$clazzMethod. " with parameters ".$storeName, $clazzMethod);
+        $messageLog = array();
+        $messageLog[] = "Started ".$clazzMethod. " with parameters ".$storeName;
 
 
         $database = new AccessData();
         $sql = "select token, token_updated_at from store_tokens 
         where store = '$storeName' limit 1";
-        $logger->writeLog("sql  ".$sql, $clazzMethod);
+        $messageLog[] = "Sql ".$sql;
 
         if($database->retrieveData($sql) == false){
+            $messageLog[] = "Error message  ".$database->errorMessage;
             http_response_code(500);
             return [ "status" => 500, "response" => "Error getting data from database" ];
         }
 
-        $logger->writeLog("data retrieved ".$database->retrievedRecords, $clazzMethod);
+        $messageLog[] = "Data reteived  ".$database->retrievedRecords;
         $storedTokenUpdatedAt = $database->retrievedRecords[0]["token_updated_at"];
         $storedToken = $database->retrievedRecords[0]["token"];
-        $storedTokenId = $database->retrievedRecords[0]["token"];
+        $storedTokenId = $database->retrievedRecords[0]["id"];
         
 
         $currentDate = strtotime(date('Y-m-d H:i:s'));
         $minutes_diff = strtotime($storedTokenUpdatedAt);
         $minutesLastUpdate = round(abs($currentDate -  $minutes_diff) / 60);
+        $messageLog[] = "minutesLastUpdate  ".$minutesLastUpdate;
 
         if($minutesLastUpdate < 30){
             http_response_code(201);
@@ -100,6 +103,7 @@ class AuthController {
         $storeAppleInfoService = new StoreAppleInfo();
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
         $url = "https://api-partner-connect.apple.com/api/authenticate/token";
+        $messageLog[] = "url  ".$url;
 
         $request_headers = array(
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
@@ -110,11 +114,13 @@ class AuthController {
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
         );
+        $messageLog[] = "request_headers  ".json_encode($request_headers);
 
         $postData = [
             'authToken' => $storedToken,
             'userAppleId' => $storeInfo["REST_ACCOUNT_ID"]
         ];
+        $messageLog[] = "postData  ".json_encode($postData);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
