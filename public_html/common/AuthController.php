@@ -10,7 +10,7 @@ class AuthController {
     /** 
     * This method validates with apple api if a store certificate is valid
     */
-    public function check($storeName): array {
+    public function checkCertificates($storeName): array {
 
         $messageLog = array();
 
@@ -43,16 +43,21 @@ class AuthController {
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
 
         $result = curl_exec($ch);
-        $messageLog[] = "This is response from apple = ". json_encode($result);
 
         if($result === false){
-            $messageLog[] = "This is error from apple = ". json_encode(curl_error($ch));
+            $messageLog[] = "This is error trying to consume apple api = ". json_encode(curl_error($ch));
             http_response_code(500);
             return [ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog];
         }
 
+        $messageLog[] = "This is response from apple = ". json_encode($result);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         
+        if(! ($this->isResponse2xx($statusCode)) ){//if apple response is not ok
+            $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
+            http_response_code($statusCode);
+            return [ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog];
+        }
 
         http_response_code($statusCode);
         return [ "status" => $statusCode, "response" => $result, "log"=> $messageLog ];
@@ -141,27 +146,26 @@ class AuthController {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
-        $messageLog[] = "This is response from apple = ". json_encode($result);
 
-        if($result === false){
-            $messageLog[] = "This is error from apple = ". json_encode(curl_error($ch));
+        if($result === false){//if request could not be executed
+            $messageLog[] = "This is error trying to consume apple api = ". json_encode(curl_error($ch));
             http_response_code(500);
-            return [ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog];
+            return [ "status" => 500, "response" => "Error trying to consume apple api ", "log"=> $messageLog];
         }
 
+        $messageLog[] = "This is response from apple = ". json_encode($result);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if(! ($this->isResponse2xx($statusCode)) ){
-            $messageLog[] = "This is error from apple = ". json_encode(curl_error($ch));
+        if(! ($this->isResponse2xx($statusCode)) ){//if apple response is not ok
+            $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
             http_response_code($statusCode);
-            return [ "status" => $statusCode, "response" => "Error trying to consume apple api", "log"=> $messageLog];
+            return [ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog];
         }
 
-
-        $newToken = json_encode($result);
+        $responseApple = json_encode($result);
         $now = date("Y-m-d H:i:s");
         
-        $sql = "update store_tokens set token = '$newToken', token_updated_at = '$now' 
+        $sql = "update store_tokens set token = '".$responseApple['authToken']."' , token_updated_at = '$now' 
         WHERE id = $storedTokenId";
 
         $messageLog[] = "sql = ". $sql;

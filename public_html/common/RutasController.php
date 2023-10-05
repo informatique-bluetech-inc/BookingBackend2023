@@ -27,7 +27,7 @@ class RutasController {
             if(array_filter($arrayRutas)[2] == "check"){
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
                     $controller = new AuthController();
-                    $result = $controller->check($storeName);
+                    $result = $controller->checkCertificates($storeName);
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($result);
                 }
