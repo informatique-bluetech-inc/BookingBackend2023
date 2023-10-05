@@ -162,7 +162,7 @@ class AuthController {
             return [ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog];
         }
 
-        $responseApple = json_encode($result);
+        $responseApple = ($result);
         $now = date("Y-m-d H:i:s");
         
         $sql = "update store_tokens set token = '".$responseApple['authToken']."' , token_updated_at = '$now' 
