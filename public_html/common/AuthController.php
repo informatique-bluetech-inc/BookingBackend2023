@@ -21,7 +21,7 @@ class AuthController {
 
         
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
-        $logger->writeLog("This is the store info from database file ".$storeInfo, $clazzMethod);
+        $logger->writeLog("This is the store info from database file ".json_encode($storeInfo), $clazzMethod);
 
         $url = $storeInfo["REST_BASE_URL"] . $storeInfo["REST_AUTH_PATH"] . "/authenticate/check";
         $logger->writeLog("This is the apple api url ".$url, $clazzMethod);
@@ -31,7 +31,7 @@ class AuthController {
             'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
         );
 
-        $logger->writeLog("This is the header for request validate token ".$requestHeaders, $clazzMethod);
+        $logger->writeLog("This is the header for request validate token ".json_encode($requestHeaders), $clazzMethod);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
