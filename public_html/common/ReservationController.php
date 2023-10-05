@@ -14,13 +14,14 @@ class ReservationController{
 
         //create a logger variable
         $messageLog = array();
-        echo $clazzMethod = "AuthController.getDateAvailableSlots";die;
+        $clazzMethod = "AuthController.getDateAvailableSlots";
         $messageLog[] = "Started ".$clazzMethod. " with parameters storeName = ".$storeName.", deviceType = ".$deviceType;
 
         //get the slots available
         $messageLog[] = "Calling to fetchAllAvailableSlots()";
         $resultAvailableSlots = $this->fetchAllAvailableSlots($deviceType, $storeName);
         $messageLog[] = $resultAvailableSlots["log"];
+        var_dump($messageLog);die;
         $messageLog[] = "Finished calling to fetchAllAvailableSlots(). resultAvailableSlots = " . json_encode($resultAvailableSlots);
 
         if(! ($this->isResponse2xx($resultAvailableSlots["status"])) ){//if apple response is not ok
