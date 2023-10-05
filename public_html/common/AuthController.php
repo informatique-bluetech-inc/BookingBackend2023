@@ -233,11 +233,24 @@ class AuthController {
 
 
     private function isResponse2xx($statusCode){
-        $pieces = str_split($statusCode);
+        /*$pieces = str_split($statusCode);
         $firstElement = $pieces[0];
         
         if($firstElement == 2) return true;
-        else return false;
+        else return false;*/
+        // Convertimos el código de estado a una cadena
+        $statusCodeString = (string)$statusCode;
+
+        // Tomamos el primer dígito
+        $firstDigit = $statusCodeString[0];
+
+        // Verificamos si el primer dígito es '2'
+        if ($firstDigit === '2') {
+            return true;
+        } else {
+            return false;
+        }
+        
     }
     
 }
