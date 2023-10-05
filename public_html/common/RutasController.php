@@ -63,20 +63,12 @@ class RutasController {
 
                     if(isset($_GET["productCode"]) && is_string($_GET["productCode"])) {
 
+                        header('Content-Type: application/json; charset=utf-8');
                         $controller = new ReservationController();
-                        $controller->getDateAvailableSlots(
+                        $response = $controller->getDateAvailableSlots(
                             $storeName,
                             $_GET["productCode"]
                         );
-
-                        //controllers\ReservationBluetechController::dateAvailableSlots($_GET["productCode"]);
-                    } else {
-                        header('Content-Type: application/json; charset=utf-8');
-                        $response = [
-                            "status" => 401,
-                            "msg" => "Enter here the query field called productCode",
-                        ];
-
                         echo json_encode($response);
                     }
                 }
