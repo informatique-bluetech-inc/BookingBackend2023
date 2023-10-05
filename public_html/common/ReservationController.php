@@ -89,7 +89,8 @@ class ReservationController{
 
         //if token is expired then get a new valid token and save it into database
         $authController = new AuthController();
-        $authController->refreshToken($storeName);
+        $resultFromRefreshToken = $authController->refreshToken($storeName);
+        var_dump($resultFromRefreshToken);
 
         //create the api apple url
         $url = "https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?";
