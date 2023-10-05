@@ -3,11 +3,11 @@ class StoreAppleInfo{
 
     public function getStoreAppleInfoByStore($store): array {
 
-        if(!file_exists(__DIR__."../bluetech/config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem")){
+        if(!file_exists(__DIR__."/../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem")){
             echo "el archivo 1 no existe";
             
         }
-        if(!file_exists(__DIR__."../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem")){
+        if(!file_exists(__DIR__."/../bluetech/config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem")){
             echo "el archivo 2 no existe";
             
         }
