@@ -67,14 +67,11 @@ class AuthController {
     /** 
     * This method insert a token manually, for the first time
     */
-    public function updateTokenManually($storeName): array {
-
-        $bodyRaw = file_get_contents("php://input");
-        $body = json_decode($bodyRaw);
+    public function updateTokenManually($storeName, $body): array {
         
-        if(!(isset($body->newToken))  || !(isset($body->storeName))){
+        if( !(isset($body->newToken))  ){
             http_response_code(400);
-            return [ "status" => 400, "response" => "There is no token or store" ];
+            return [ "status" => 400, "response" => "There is no token" ];
         }
 
         $database = new AccessData();
@@ -86,7 +83,7 @@ class AuthController {
         $now = date("Y-m-d H:i:s");
 
         $sql = "update store_tokens set token = '".$body->newToken."' , token_updated_at = '".$now."' 
-        WHERE store = ".$body->storeName." ;";
+        WHERE store = ".$storeName." ;";
 
         $messageLog[] = "Sql = ".$sql;
 
