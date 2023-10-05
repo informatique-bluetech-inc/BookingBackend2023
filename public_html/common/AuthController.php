@@ -158,13 +158,15 @@ class AuthController {
 
         if($database->executeQueryOperation($sql) == false){
             http_response_code(500);
-            return [ "status" => 500, "response" => "Error setting data to database" ];
+            return [ "status" => 500, "response" => "Error setting data to database",
+                "log" => $messageLog ];
         }
 
         http_response_code($statusCode);
         return [
             "status" => $statusCode,
-            "response" => "New token was refreshed and saved in database"
+            "response" => "New token was refreshed and saved in database",
+            "log" => $messageLog
         ];
 
     }
