@@ -22,7 +22,7 @@ class AuthController {
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
         $messageLog[] = "This is the store info from database file ".json_encode($storeInfo);
 
-        $url = $storeInfo["REST_BASE_URL"] . $storeInfo["REST_AUTH_PATH"] . "/authenticate/check";
+        $url = "https://api-partner-connect.apple.com/api/authenticate/check";
         $messageLog[] =  "This is the apple api url ".$url;
 
         $requestHeaders = array(
@@ -99,7 +99,7 @@ class AuthController {
 
         $storeAppleInfoService = new StoreAppleInfo();
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
-        $url = $storeInfo["REST_BASE_URL"] . $storeInfo["REST_AUTH_PATH"] . "/authenticate/token";
+        $url = "https://api-partner-connect.apple.com/api/authenticate/token";
 
         $request_headers = array(
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
