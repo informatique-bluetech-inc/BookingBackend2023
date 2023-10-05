@@ -53,11 +53,11 @@ class StoreAppleInfo{
             "REST_ShipTo" => "0000023532"
         ];
 
-        $BLUETECH = "BlueTech";
-        $ISTORE1 = "iStore1";
-        $ISTORE2 = "iStore2";
-        $ISTORE3 = "iStore3";
-        $INFOTECHCORP = "InfoTechCorp";
+        $BLUETECH = "bluetech";
+        $ISTORE1 = "istore1";
+        $ISTORE2 = "istore2";
+        $ISTORE3 = "istore3";
+        $INFOTECHCORP = "infotechcorp";
 
         //create array with elements as stores
         $arrayStores =

@@ -3,11 +3,11 @@ require_once __DIR__."/common/RutasController.php";
 
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 
-$BLUETECH = "BlueTech";
-$ISTORE1 = "iStore1";
-$ISTORE2 = "iStore2";
-$ISTORE3 = "iStore3";
-$INFOTECHCORP = "InfoTechCorp";
+$BLUETECH = "bluetech";
+$ISTORE1 = "istore1";
+$ISTORE2 = "istore2";
+$ISTORE3 = "istore3";
+$INFOTECHCORP = "infotechcorp";
 
 if(count(array_filter($arrayRutas)) == 2){
 

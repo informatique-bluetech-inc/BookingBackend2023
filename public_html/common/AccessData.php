@@ -7,7 +7,7 @@ class AccessData
     var $connection;
     
     /** Data result from database after execute a query */
-    var $retrievedRecords;
+    var array $retrievedRecords;
 
     /** Quantity of records that were affected after an insert, update or delete */
     var int $quantityRowsAffected;
