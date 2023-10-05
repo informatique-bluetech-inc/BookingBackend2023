@@ -12,6 +12,7 @@ class RutasController {
 
         if(count(array_filter($arrayRutas)) == 1){
             if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
+                echo "index";die;
                 header('Content-Type: application/json; charset=utf-8');
                 $response = [
                     "status" => 201,
