@@ -25,7 +25,7 @@ class ReservationController{
         $messageLog[] = "Finished calling to fetchAllAvailableSlots(). resultAvailableSlots = " . json_encode($resultAvailableSlots);
 
         if(! ($this->isResponse2xx($resultAvailableSlots["status"])) ){//if apple response is not ok
-            return ["status"=>$resultAvailableSlots["status"], "response"=>$resultAvailableSlots["reponse"], 
+            return ["status"=>$resultAvailableSlots["status"], "response"=>$resultAvailableSlots["response"], 
                 "log"=>$messageLog];
         }
 
