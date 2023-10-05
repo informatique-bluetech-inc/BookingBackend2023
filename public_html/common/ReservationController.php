@@ -14,12 +14,13 @@ class ReservationController{
 
         //create a logger variable
         $messageLog = array();
-        $clazzMethod = "AuthController.fetchAvailableSlots";
+        $clazzMethod = "AuthController.getDateAvailableSlots";
         $messageLog[] = "Started ".$clazzMethod. " with parameters storeName = ".$storeName.", deviceType = ".$deviceType;
 
         //get the slots available
         $messageLog[] = "Calling to fetchAllAvailableSlots()";
         $resultAvailableSlots = $this->fetchAllAvailableSlots($deviceType, $storeName);
+        $messageLog[] = $resultAvailableSlots["log"];
         $messageLog[] = "Finished calling to fetchAllAvailableSlots(). resultAvailableSlots = " . json_encode($resultAvailableSlots);
 
         if(! ($this->isResponse2xx($resultAvailableSlots["status"])) ){//if apple response is not ok
@@ -31,14 +32,15 @@ class ReservationController{
         $days_period = [];
         $days_unavaibles = [];
 
+        $messageLog[] = "Working on slots = ".$resultAvailableSlots["slots"];
         foreach ($resultAvailableSlots["response"]->slots as $listDate) {
             $arrayTemporal[] = date('Y-m-d', strtotime($listDate->start . " UTC"));
         }
 
         foreach (array_unique($arrayTemporal) as $key => $value) {
-            //echo $value->format('Y-m-d').'<br>';
             $days[] = $value;
         }
+        $messageLog[] = "Days = ".$days;
 
         $startDate = time();
 
@@ -132,13 +134,6 @@ class ReservationController{
         curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        /*$result = curl_exec($ch);
-        $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        if ($statusCode == 200 || $statusCode == 201) {
-            return [$ch, $statusCode, json_decode($result)];
-        } else {
-            return [$ch, $statusCode, false];
-        }*/
         $result = curl_exec($ch);
         if($result === false){
             $messageLog[] = "This is error trying to consume apple api = ". json_encode(curl_error($ch));
