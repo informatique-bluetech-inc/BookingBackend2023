@@ -13,26 +13,28 @@ class AuthController {
     */
     public function check($storeName): array {
 
+        $messageLog = "";
+
         $logger = new Logger();
         $storeAppleInfoService = new StoreAppleInfo();
 
         $clazzMethod = "AuthController.check";
-        $logger->writeLog("Started ".$clazzMethod. " with parameters ".$storeName, $clazzMethod);
-
+        $messageLog = $messageLog . "Started ".$clazzMethod. " with parameters ".$storeName."\n";
         
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
-        $logger->writeLog("This is the store info from database file ".json_encode($storeInfo), $clazzMethod);
+        $messageLog = $messageLog . "This is the store info from database file ".$storeInfo."\n";
 
         $url = $storeInfo["REST_BASE_URL"] . $storeInfo["REST_AUTH_PATH"] . "/authenticate/check";
-        $logger->writeLog("This is the apple api url ".$url, $clazzMethod);
+        $messageLog = $messageLog . "This is the apple api url ".$url."\n";
 
         $requestHeaders = array(
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
             'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
         );
 
-        $logger->writeLog("This is the header for request validate token ".json_encode($requestHeaders), $clazzMethod);
+        $messageLog = $messageLog . "This is the header for request validate token ".$requestHeaders."\n";
 
+        $messageLog = $messageLog . "This storeInfo ". print_r($storeInfo)."\n";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $storeInfo["REST_CERT_PATH"]);
@@ -43,17 +45,18 @@ class AuthController {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($ch);
+        $messageLog = $messageLog . "this is response from apple = ". print_r($result)."\n";
 
         if($result === false){
             http_response_code(500);
-            return [ "status" => 500, "response" => "Error trying to consume apple api"];
+            return [ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog];
         }
 
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $logger->writeLog("This is the response from apple ".$result, $clazzMethod);
+        
 
         http_response_code($statusCode);
-        return [ "status" => $statusCode, "response" => $result ];
+        return [ "status" => $statusCode, "response" => $result, "log"=> $messageLog ];
     }
 
 
