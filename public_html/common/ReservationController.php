@@ -14,7 +14,7 @@ class ReservationController{
 
         //create a logger variable
         $messageLog = array();
-        $clazzMethod = "AuthController.getDateAvailableSlots";
+        echo $clazzMethod = "AuthController.getDateAvailableSlots";die;
         $messageLog[] = "Started ".$clazzMethod. " with parameters storeName = ".$storeName.", deviceType = ".$deviceType;
 
         //get the slots available
