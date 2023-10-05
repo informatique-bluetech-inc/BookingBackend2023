@@ -86,7 +86,7 @@ class AuthController {
             return [ "status" => 500, "response" => "There is no token saved for the store", "log" => $messageLog ];
         }
 
-        $messageLog[] = "Data retrieved  ".$database->retrievedRecords[0];
+        $messageLog[] = "Data retrieved  ".json_encode($database->retrievedRecords[0]);
         $storedTokenUpdatedAt = $database->retrievedRecords[0]["token_updated_at"];
         $storedToken = $database->retrievedRecords[0]["token"];
         $storedTokenId = $database->retrievedRecords[0]["id"];
