@@ -69,7 +69,7 @@ class AuthController {
     */
     public function updateTokenManually($storeName, $body): array {
         
-        if( !(isset($body->newToken))  ){
+        if( !(isset($body->token))  ){
             http_response_code(400);
             return [ "status" => 400, "response" => "There is no token" ];
         }
@@ -82,8 +82,8 @@ class AuthController {
         
         $now = date("Y-m-d H:i:s");
 
-        $sql = "update store_tokens set token = '".$body->newToken."' , token_updated_at = '".$now."' 
-        WHERE store = '".$storeName."' ;";
+        $sql = "update store_tokens set token = '".$body->token."' , token_updated_at = '".$now."' 
+        WHERE store = '".$storeName."XX' ;";
 
         $messageLog[] = "Sql = ".$sql;
 
