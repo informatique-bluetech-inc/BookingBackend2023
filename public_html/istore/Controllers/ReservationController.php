@@ -226,8 +226,7 @@ class ReservationController
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 
-        var_dump($postData);die;
-        
+
         $result = curl_exec($ch);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $data = json_decode($result);
