@@ -42,7 +42,7 @@ class AuthController {
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_FAILONERROR, false);
+        //curl_setopt($ch, CURLOPT_FAILONERROR, false);
 
         $result = curl_exec($ch);
         $messageLog[] = "this is response from apple = ". json_encode($result)."\n";
