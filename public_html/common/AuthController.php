@@ -156,7 +156,7 @@ class AuthController {
 
         $messageLog[] = "This is response from apple = ". json_encode($result);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
+        var_dump($statusCode);die;
         if(! ($this->isResponse2xx($statusCode)) ){//if apple response is not ok
             $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
             http_response_code($statusCode);
@@ -165,7 +165,7 @@ class AuthController {
 
         $responseApple = ($result);
         $now = date("Y-m-d H:i:s");
-        var_dump($responseApple);die;
+        
         $sql = "update store_tokens set token = '".$responseApple['authToken']."' , token_updated_at = '$now' 
         WHERE id = ".$storedTokenId;
 
