@@ -57,28 +57,24 @@ class ReservationController
             echo json_encode($response);
             return;
         }
+
         $hours_available = [];
-        /*foreach ($slots[2]->slots as $item) {
-            if (date('Y-m-d', strtotime($item->end . " UTC")) == $filter_date) {
-                $time = date('H:i', strtotime($item->start.'+1 hour'));
-                if(!in_array($time, $hours_available)){
-                    $hours_available[] = $time;
-                }
-            }
-        }*/
         date_default_timezone_set((string) $slots[2]->storeTimeZone);
 
         foreach ($slots[2]->slots as $item) {//iterates every available datetime
             $startDatetimeUtcTimezone = strtotime ($item->start);
             $startDatetimeLocalTimezone = date('Y-m-d H:i:s', $startDatetimeUtcTimezone);
             
-            if( date('Y-m-d', strtotime($startDatetimeLocalTimezone)) ==  $filter_date){
-                //echo "Available datetime added = ".$startDatetimeLocalTimezone;
-                $hours_available[] = date('H:i', strtotime($startDatetimeLocalTimezone));
-            } else {
-                //echo "Available datetime not added, its incorrect date = ".$startDatetimeLocalTimezone;
+            if(date('Y-m-d', strtotime($startDatetimeLocalTimezone)) !=  $filter_date){
+                continue;//if it is not date we are looking for, jump this iteration
             }
+            if($item->reservationType != "CIN"){
+                continue;//if the type is not cin, jump this iteration
+            }
+            
+            $hours_available[] = date('H:i', strtotime($startDatetimeLocalTimezone));
         }
+
         sort($hours_available);
 
         if (!is_null($hours_available)) {
