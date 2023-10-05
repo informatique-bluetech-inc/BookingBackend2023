@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/StoreAppleInfo.php";
-require_once __DIR__ . "/Logger.php";
 require_once __DIR__ . "/AccessData.php";
 
 
@@ -15,24 +14,23 @@ class AuthController {
 
         $messageLog = array();
 
-        $logger = new Logger();
         $storeAppleInfoService = new StoreAppleInfo();
 
         $clazzMethod = "AuthController.check";
-        $messageLog[] = "Started ".$clazzMethod. " with parameters ".$storeName."\n";
+        $messageLog[] = "Started ".$clazzMethod. " with parameters ".$storeName;
         
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
-        $messageLog[] = "This is the store info from database file ".json_encode($storeInfo)."\n";
+        $messageLog[] = "This is the store info from database file ".json_encode($storeInfo);
 
         $url = $storeInfo["REST_BASE_URL"] . $storeInfo["REST_AUTH_PATH"] . "/authenticate/check";
-        $messageLog[] =  "This is the apple api url ".$url."\n";
+        $messageLog[] =  "This is the apple api url ".$url;
 
         $requestHeaders = array(
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
             'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
         );
 
-        $messageLog[] = "This is the header for request validate token ".json_encode($requestHeaders)."\n";
+        $messageLog[] = "This is the header for request validate token ".json_encode($requestHeaders);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -45,9 +43,10 @@ class AuthController {
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
 
         $result = curl_exec($ch);
-        $messageLog[] = "this is response from apple = ". json_encode($result)."\n";
+        $messageLog[] = "This is response from apple = ". json_encode($result);
 
         if($result === false){
+            $messageLog[] = "This is error from apple = ". json_encode(curl_error($ch));
             http_response_code(500);
             return [ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog];
         }
