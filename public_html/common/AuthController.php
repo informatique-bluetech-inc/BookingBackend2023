@@ -28,8 +28,8 @@ class AuthController {
         $messageLog[] =  "This is the apple api url ".$url."\n";
 
         $requestHeaders = array(
-            //'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
-            //'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
+            'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
+            'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
         );
 
         $messageLog[] = "This is the header for request validate token ".json_encode($requestHeaders)."\n";

@@ -7,7 +7,7 @@ class StoreAppleInfo{
         [
             "REST_CERT_PATH" => __DIR__ . "/../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
             "REST_SSL_KEY" =>__DIR__."/../bluetech/Config/privatekey.pem",
-            "REST_CERT_PASS" => "BluetechAppleGSX2022",
+            "REST_CERT_PASS" => "BluetechAppleGSX2022BORRARESTO",
             "REST_ACCOUNT_ID" => "gsxapi@ibluetech.ca",
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
             //"REST_AUTH_TOKEN_APPLE" => "70c4d580-b996-47b6-beea-b00740cb843n", get it from database
