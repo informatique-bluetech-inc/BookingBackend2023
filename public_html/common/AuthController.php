@@ -164,7 +164,7 @@ class AuthController {
         }
 
         $responseApple = ($result);
-        var_dump($responseApple);die;
+        var_dump($this->isResponse2xx($statusCode));die;
         $now = date("Y-m-d H:i:s");
         
         $sql = "update store_tokens set token = '".$responseApple['authToken']."' , token_updated_at = '$now' 
