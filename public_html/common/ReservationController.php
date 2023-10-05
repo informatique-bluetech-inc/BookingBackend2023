@@ -20,7 +20,10 @@ class ReservationController{
         //get the slots available
         $messageLog[] = "Calling to fetchAllAvailableSlots()";
         $resultAvailableSlots = $this->fetchAllAvailableSlots($deviceType, $storeName);
-        //$messageLog[] = $resultAvailableSlots["log"];
+        
+        foreach($resultAvailableSlots["log"] as $log){
+            $messageLog[] = $log;
+        }
         
         $messageLog[] = "Finished calling to fetchAllAvailableSlots(). resultAvailableSlots = " . json_encode($resultAvailableSlots);
 
