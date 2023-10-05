@@ -77,6 +77,7 @@ class AuthController {
         $bodyRaw = file_get_contents("php://input");
         $body = json_decode($bodyRaw, false);//false because return as object
 
+
         if( !(isset($body->token))  ){
             http_response_code(400);
             return [ "status" => 400, "response" => "There is no token" ];
