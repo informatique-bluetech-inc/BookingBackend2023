@@ -46,8 +46,6 @@ class RutasController {
                 if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     $controller = new AuthController();
                     $result = $controller->updateTokenManually($storeName);
-                    echo "estoy en rutas";
-                    var_dump($result);
                     header('Content-Type: application/json; charset=utf-8');
                     echo json_encode($result);
                 }
