@@ -3,11 +3,17 @@ class StoreAppleInfo{
 
     public function getStoreAppleInfoByStore($store): array {
 
+        if(file_exists(__DIR__."/../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem")){
+            echo "el archivo no existe";
+            die;
+        }
+
         $storeBlueTech =
         [
             //"REST_CERT_PATH" => dirname(__FILE__, 1) . "/../AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
             "REST_CERT_PATH" =>realpath(__DIR__."/../bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem"),
-            "REST_SSL_KEY" => dirname(__FILE__, 1) . "/../privatekey.pem",
+            //"REST_SSL_KEY" => dirname(__FILE__, 1) . "/../privatekey.pem",
+            "REST_SSL_KEY" => realpath(__DIR__."/../bluetech/Config/privatekey.pem"),
             "REST_CERT_PASS" => "BluetechAppleGSX2022",
             "REST_ACCOUNT_ID" => "gsxapi@ibluetech.ca",
             "REST_BASE_URL" => "https://api-partner-connect.apple.com",
