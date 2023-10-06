@@ -158,7 +158,7 @@ class AuthController {
         }
 
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $messageLog[] = "This is response body from apple = ". json_encode($result);
+        $messageLog[] = "This is response body from apple = ". $result;//without decode because it is a string
         $messageLog[] = "This is response code from apple = ". $statusCode;
         
         if(! ($this->isResponse2xx($statusCode)) ){//if apple response is not ok
