@@ -40,6 +40,8 @@ class ReservationController{
         $days_period = [];
         $days_unavaibles = [];
 
+
+        var_dump($availableSlots);die;
         $messageLog[] = "Working on slots = ".json_encode($availableSlots);
         foreach ($availableSlots->slots as $slot) {
             $arrayTemporal[] = date('Y-m-d', strtotime($slot->start . " UTC"));
