@@ -72,7 +72,7 @@ class ReservationController{
         }
 
         return [
-            "correlationId" => $resultAvailableSlots["response"]->correlationId, 
+            "correlationId" => $$availableSlots["correlationId"], 
             "days_unavaibles" => $days_unavaibles
         ];
     }
