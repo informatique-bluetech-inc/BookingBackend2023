@@ -134,6 +134,11 @@ class ReservationController{
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
         ];
+        $messageLog[] = "requestHeaders  = ".json_encode($requestHeaders);
+        $messageLog[] = "REST_CERT_PATH  = ".($storeInfo["REST_CERT_PATH"]);
+        $messageLog[] = "REST_SSL_KEY  = ".($storeInfo["REST_SSL_KEY"]);
+        $messageLog[] = "REST_CERT_PASS  = ".($storeInfo["REST_CERT_PASS"]);
+
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -150,7 +155,7 @@ class ReservationController{
             return [ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog];
         }
 
-        $messageLog[] = "This is response from apple = ". json_encode($result);
+        $messageLog[] = "This is response from apple = ". ($result);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         
         if(! ($this->isResponse2xx($statusCode)) ){//if apple response is not ok
