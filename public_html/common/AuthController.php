@@ -26,11 +26,10 @@ class AuthController {
         $messageLog[] =  "This is the apple api url ".$url;
 
         $requestHeaders = array(
-            'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
-            'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
+            "X-Apple-SoldTo: " . $storeInfo["REST_SoldTo"],
         );
 
-        $messageLog[] = "This is the header for request validate token ".json_encode($requestHeaders);
+        $messageLog[] = "This is the header for request to check certificates ".json_encode($requestHeaders);
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -42,6 +41,7 @@ class AuthController {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
 
+        $messageLog[] = "Ready to execute request to check certificates ".json_encode($ch);
         $result = curl_exec($ch);
 
         if($result === false){
