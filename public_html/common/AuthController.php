@@ -164,7 +164,6 @@ class AuthController {
         }
 
         $responseApple = ($result);
-        var_dump($this->isResponse2xx($statusCode));die;
         $now = date("Y-m-d H:i:s");
         
         $sql = "update store_tokens set token = '".$responseApple['authToken']."' , token_updated_at = '$now' 
@@ -234,24 +233,13 @@ class AuthController {
 
 
     private function isResponse2xx($statusCode){
-        /*$pieces = str_split($statusCode);
-        $firstElement = $pieces[0];
-        
-        if($firstElement == 2) return true;
-        else return false;*/
-        // Convertimos el código de estado a una cadena
         $statusCodeString = (string)$statusCode;
-
-        // Tomamos el primer dígito
         $firstDigit = $statusCodeString[0];
 
-        // Verificamos si el primer dígito es '2'
-        if ($firstDigit === '2') {
-            return true;
-        } else {
+        if ($firstDigit === '2') 
+            return true; 
+        else 
             return false;
-        }
-        
     }
     
 }
