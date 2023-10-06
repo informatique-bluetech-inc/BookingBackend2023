@@ -71,7 +71,6 @@ class ReservationController{
             }
         }
 
-        var_dump($availableSlots);die;
         return [
             "correlationId" => $availableSlots["correlationId"], 
             "days_unavaibles" => $days_unavaibles
