@@ -20,7 +20,7 @@ class AuthController {
         $messageLog[] = "Started ".$clazzMethod. " with parameters ".$storeName;
         
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
-        $messageLog[] = "This is the store info from database file ".json_encode($storeInfo);
+        $messageLog[] = "This is the store info from file ".json_encode($storeInfo);
 
         $url = "https://api-partner-connect.apple.com/api/authenticate/check";
         $messageLog[] =  "This is the apple api url ".$url;
@@ -80,7 +80,7 @@ class AuthController {
         $database = new AccessData();
         $sql = "select id, token, token_updated_at from store_tokens 
         where store = '$storeName' limit 1";
-        $messageLog[] = "Sql = ".$sql;
+        $messageLog[] = "Getting stored token. SQL = ".$sql;
 
         if($database->retrieveData($sql) == false){
             $messageLog[] = "Error message  ".$database->errorMessage;
@@ -116,24 +116,26 @@ class AuthController {
         $storeAppleInfoService = new StoreAppleInfo();
         $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
         $url = "https://api-partner-connect.apple.com/api/authenticate/token";
+        $messageLog[] = "This is the store info from database file ".json_encode($storeInfo);
         $messageLog[] = "Apple url = ".$url;
 
         $requestHeaders = array(
-            'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
-            'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
-            'X-Apple-Trace-ID: ' ,
-            'X-Apple-Service-Version: v5',
-            'Content-Type: application/json',
-            'Accept: application/json',
-            'X-Apple-Client-Locale: en-US'
+            "X-Apple-SoldTo: " . $storeInfo["REST_SoldTo"],
+            "X-Apple-ShipTo: " . $storeInfo["REST_ShipTo"],
+            "X-Apple-Trace-ID: ". $storedToken ,
+            "X-Apple-Service-Version: v5",
+            "Content-Type: application/json",
+            "Accept: application/json",
+            "X-Apple-Client-Locale: en-US"
         );
-        $messageLog[] = "RequestHeaders  = ".json_encode($requestHeaders);
+        $messageLog[] = "Request headers to update token = ".json_encode($requestHeaders);
 
         $postData = [
-            'authToken' => $storedToken,
-            'userAppleId' => $storeInfo["REST_ACCOUNT_ID"]
+            "authToken" => $storedToken,
+            "userAppleId" => $storeInfo["REST_ACCOUNT_ID"]
         ];
-        $messageLog[] = "PostData = ".json_encode($postData);
+        $messageLog[] = "Request body to update token = ".json_encode($postData);
+        $messageLog[] = "Ready to execute request to update token ";
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -142,7 +144,7 @@ class AuthController {
         curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $storeInfo["REST_CERT_PASS"]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
         curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -155,8 +157,9 @@ class AuthController {
             return [ "status" => 500, "response" => "Error trying to consume apple api ", "log"=> $messageLog];
         }
 
-        $messageLog[] = "This is response from apple = ". json_encode($result);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $messageLog[] = "This is response body from apple = ". json_encode($result);
+        $messageLog[] = "This is response code from apple = ". $statusCode;
         
         if(! ($this->isResponse2xx($statusCode)) ){//if apple response is not ok
             $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
@@ -167,9 +170,9 @@ class AuthController {
         $responseApple = ($result);
         $now = date("Y-m-d H:i:s");
 
-        if(!isset($responseApple['authToken']) || !isset($storedTokenId) ){
+        if(!isset($responseApple["authToken"]) || !isset($storedTokenId) ){
             http_response_code(500);
-            return [ "status" => 500, "response" => "Error befeore save new token, data incomplete",
+            return [ "status" => 500, "response" => "Error before save new token, data incomplete",
                 "log" => $messageLog ];
         }
         
