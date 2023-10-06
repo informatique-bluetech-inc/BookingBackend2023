@@ -41,7 +41,7 @@ class AuthController {
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FAILONERROR, false);
 
-        $messageLog[] = "Ready to execute request to check certificates ".json_encode($ch);
+        $messageLog[] = "Ready to execute request to check certificates ";
         $result = curl_exec($ch);
 
         if($result === false){
@@ -50,8 +50,9 @@ class AuthController {
             return [ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog];
         }
 
-        $messageLog[] = "This is response from apple = ". json_encode($result);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $messageLog[] = "This is response body from apple = ". json_encode($result);
+        $messageLog[] = "This is response code from apple = ". $statusCode;
         
         if(! ($this->isResponse2xx($statusCode)) ){//if apple response is not ok
             $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
