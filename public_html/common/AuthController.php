@@ -166,6 +166,12 @@ class AuthController {
 
         $responseApple = ($result);
         $now = date("Y-m-d H:i:s");
+
+        if(!isset($responseApple['authToken']) || !isset($storedTokenId) ){
+            http_response_code(500);
+            return [ "status" => 500, "response" => "Error befeore save new token, data incomplete",
+                "log" => $messageLog ];
+        }
         
         $sql = "update store_tokens set token = '".$responseApple['authToken']."' , token_updated_at = '$now' 
         WHERE id = ".$storedTokenId;
