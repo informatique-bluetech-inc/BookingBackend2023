@@ -92,7 +92,7 @@ class ReservationController{
         $resultFromRefreshToken = $authController->refreshToken($storeName);
         if( !  ($this->isResponse2xx($resultFromRefreshToken["status"]))  ){
             http_response_code(500);
-            return [ "status" => 500, "response" => $resultFromRefreshToken["reponse"], "log" => $messageLog ];
+            return [ "status" => 500, "response" => $resultFromRefreshToken["response"], "log" => $messageLog ];
         }
 
         //create the api apple url
