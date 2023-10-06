@@ -71,6 +71,7 @@ class ReservationController{
             }
         }
 
+        http_response_code(200);
         return [
             "correlationId" => $availableSlots["correlationId"], 
             "days_unavaibles" => $days_unavaibles
@@ -167,7 +168,7 @@ class ReservationController{
             return [ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog];
         }
 
-        //reponse status should be 200 but this response is gonna be used in oher method
+        http_response_code(200);
         return [ "status" => $statusCode, "response" => $result, "log"=> $messageLog ];
     }
 
