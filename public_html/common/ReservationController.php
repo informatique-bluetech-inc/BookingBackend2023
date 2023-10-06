@@ -21,6 +21,7 @@ class ReservationController{
         $messageLog[] = "Calling to fetchAllAvailableSlots()";
         $resultAvailableSlots = $this->fetchAllAvailableSlots($deviceType, $storeName);
         
+        
         foreach($resultAvailableSlots["log"] as $log){
             $messageLog[] = $log;
         }
@@ -32,14 +33,16 @@ class ReservationController{
                 "log"=>$messageLog];
         }
 
+        $availableSlots = json_decode($resultAvailableSlots["response"], true);//decode as associative array
+
         $arrayTemporal = [];
         $days = [];
         $days_period = [];
         $days_unavaibles = [];
 
-        $messageLog[] = "Working on slots = ".$resultAvailableSlots["slots"];
-        foreach ($resultAvailableSlots["response"]->slots as $listDate) {
-            $arrayTemporal[] = date('Y-m-d', strtotime($listDate->start . " UTC"));
+        $messageLog[] = "Working on slots = ".json_encode($availableSlots);
+        foreach ($availableSlots->slots as $slot) {
+            $arrayTemporal[] = date('Y-m-d', strtotime($slot->start . " UTC"));
         }
 
         foreach (array_unique($arrayTemporal) as $key => $value) {
