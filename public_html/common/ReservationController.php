@@ -129,7 +129,7 @@ class ReservationController{
             'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
             'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
             'X-Apple-Auth-Token: ' . $storedToken,
-            'X-Apple-Service-Version: v4',
+            'X-Apple-Service-Version: v5',
             'Content-Type: application/json',
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
