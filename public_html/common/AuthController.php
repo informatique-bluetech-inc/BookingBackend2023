@@ -167,7 +167,7 @@ class AuthController {
             return [ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog];
         }
 
-        $responseApple = json_decode($result);//decode because parse from string json to an object
+        $responseApple = json_decode($result,true);//decode because parse from string json to an object
         $now = date("Y-m-d H:i:s");
 
         if(!isset($responseApple["authToken"]) || !isset($storedTokenId) ){
