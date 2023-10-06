@@ -136,6 +136,7 @@ class ReservationController{
             'X-Apple-Service-Version: v5',
             'Content-Type: application/json',
             'Accept: application/json',
+            'X-Operator-User-ID: '.$storeInfo["REST_ACCOUNT_ID"],
             'X-Apple-Client-Locale: en-US'
         ];
         $messageLog[] = "requestHeaders  = ".json_encode($requestHeaders);
