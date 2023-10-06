@@ -41,11 +41,11 @@ class ReservationController{
         $days_unavaibles = [];
 
         $messageLog[] = "Working on slots = ".json_encode($availableSlots);
-        foreach ($availableSlots["slots"] as $slot) {
-            $arrayTemporal[] = date('Y-m-d', strtotime($slot->start . " UTC"));
+        foreach ($availableSlots["slots"] as $slot) {//iterate each start date and add utc format
+            $arrayTemporal[] = date('Y-m-d', strtotime($slot["start"] . " UTC"));
         }
 
-        foreach (array_unique($arrayTemporal) as $key => $value) {
+        foreach (array_unique($arrayTemporal) as $key => $value) {//delete duplicate dates
             $days[] = $value;
         }
         $messageLog[] = "Days = ".$days;
