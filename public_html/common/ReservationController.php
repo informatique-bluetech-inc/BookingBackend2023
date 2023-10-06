@@ -48,7 +48,7 @@ class ReservationController{
         foreach (array_unique($arrayTemporal) as $key => $value) {//delete duplicate dates
             $days[] = $value;
         }
-        $messageLog[] = "Days = ".$days;
+        $messageLog[] = "Days = ".json_encode($days);
 
         $startDate = time();
 
