@@ -1,0 +1,20 @@
+
+====== BLUETECH: BluetechAppleGSX2022 ========
+
+1- Validate if certificates are ok. 
+curl -X GET https://api-partner-connect.apple.com/api/authenticate/check -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-SoldTo: 0001259855' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem'
+
+
+2- List available slots 
+curl -X GET https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=MAC -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: 5a624dd4-cdf4-42ba-b453-196b17af1e0a' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: gsxapi@ibluetech.ca' -H 'X-Apple-Client-Locale: en-US' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem'
+
+
+
+
+====== ISTORE1: iStore07631Englewood ======== 
+
+curl -X GET https://api-partner-connect.apple.com/api/authenticate/check -H 'X-Apple-ShipTo: 0001054076' -H 'X-Apple-SoldTo: 0001054076' --cert 'public_html/common/istore/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem' --key 'public_html/common/istore/Config/privatekey.pem'
+
+
+2- List available slots 
+curl -X GET https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=MAC -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: e6b7eeac-5058-4f08-beb3-d4209b3f54bg' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: service@istorestm.com' -H 'X-Apple-Client-Locale: en-US' -H "Content-type: application/json" --cert 'public_html/common/istore/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem' --key 'public_html/common/istore/Config/privatekey.pem'
