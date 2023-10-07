@@ -2,7 +2,7 @@ FROM php:8.2-fpm-alpine
 LABEL MAINTAINER="Vagner Cardoso <vagnercardosoweb@gmail.com>"
 
 # Environments
-ENV TZ=America/Sao_Paulo
+ENV TZ=America/New_York
 ENV WORKDIR=/var/www/app.dev
 
 # Updates and installs system dependencies
