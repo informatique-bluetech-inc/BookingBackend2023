@@ -6,9 +6,15 @@ curl -X GET https://api-partner-connect.apple.com/api/authenticate/check -H 'X-A
 
 
 2- List available slots 
-curl -X GET https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=MAC -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: 5a624dd4-cdf4-42ba-b453-196b17af1e0a' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: gsxapi@ibluetech.ca' -H 'X-Apple-Client-Locale: en-US' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem'
+curl -X  GET https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=MAC -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: 0efd8f0e-2f63-406a-8a1d-d011e947533j' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: gsxapi@ibluetech.ca' -H 'X-Apple-Client-Locale: en-US' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem'
 
 
+curl -X  GET https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=MAC -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: 0efd8f0e-2f63-406a-8a1d-d011e947533j' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: gsxapi@ibluetech.ca' -H 'X-Apple-Client-Locale: en-US' --cert 'AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'privatekey.pem'
+
+
+3- product hierchchy
+
+curl -X GET https://api-partner-connect.apple.com/gsx/api/content/product/hierarchy -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: 0efd8f0e-2f63-406a-8a1d-d011e947533j' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: gsxapi@ibluetech.ca' -H 'X-Apple-Client-Locale: en-US' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem'
 
 
 ====== ISTORE1: iStore07631Englewood ======== 
