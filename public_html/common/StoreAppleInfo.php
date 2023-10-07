@@ -5,8 +5,8 @@ class StoreAppleInfo{
 
         $storeBlueTech =
         [
-            "REST_CERT_PATH" => __DIR__ . "bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
-            "REST_SSL_KEY" =>__DIR__."bluetech/Config/privatekey.pem",
+            "REST_CERT_PATH" => __DIR__ . "/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
+            "REST_SSL_KEY" =>__DIR__."/bluetech/Config/privatekey.pem",
             "REST_CERT_PASS" => "BluetechAppleGSX2022",
             "REST_ACCOUNT_ID" => "gsxapi@ibluetech.ca",
             "REST_SoldTo" => "0001259855",
@@ -15,8 +15,8 @@ class StoreAppleInfo{
 
         $storeiStore1 =
         [
-            "REST_CERT_PATH" => __DIR__ . "istore/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
-            "REST_SSL_KEY" => __DIR__ . "istore/Config/privatekey.pem",
+            "REST_CERT_PATH" => __DIR__ . "/istore/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
+            "REST_SSL_KEY" => __DIR__ . "/istore/Config/privatekey.pem",
             "REST_CERT_PASS" => "iStore07631Englewood",
             "REST_ACCOUNT_ID" => "service@istorestm.com",
             "REST_SoldTo" => "0001054076",
@@ -25,8 +25,8 @@ class StoreAppleInfo{
 
         $storeiStore2 =
         [
-            "REST_CERT_PATH" => __DIR__ . "istore_two/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
-            "REST_SSL_KEY" => __DIR__ . "istore_two/Config/privatekey.pem",
+            "REST_CERT_PATH" => __DIR__ . "/istore_two/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
+            "REST_SSL_KEY" => __DIR__ . "/istore_two/Config/privatekey.pem",
             "REST_CERT_PASS" => "iStore07631Englewood",
             "REST_ACCOUNT_ID" => "service@istorestm.com",
             "REST_SoldTo" => "0001054076",
@@ -35,8 +35,8 @@ class StoreAppleInfo{
 
         $storeiStore3 =
         [
-            "REST_CERT_PATH" => __DIR__ . "istore_three/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
-            "REST_SSL_KEY" => __DIR__ . "istore_three/Config/privatekey.pem",
+            "REST_CERT_PATH" => __DIR__ . "/istore_three/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
+            "REST_SSL_KEY" => __DIR__ . "/istore_three/Config/privatekey.pem",
             "REST_CERT_PASS" => "iStore07631Englewood",
             "REST_ACCOUNT_ID" => "service@istorestm.com",
             "REST_SoldTo" => "0001054076",
@@ -45,8 +45,8 @@ class StoreAppleInfo{
 
         $storeInfoTechCorp =
         [
-            "REST_CERT_PATH" => __DIR__ . "infotechcorp/Config/AppleCare-Partner-0000023532.Prod.apple.com.chain.pem",
-            "REST_SSL_KEY" => __DIR__ . "infotechcorp/Config/privatekey.pem",
+            "REST_CERT_PATH" => __DIR__ . "/infotechcorp/Config/AppleCare-Partner-0000023532.Prod.apple.com.chain.pem",
+            "REST_SSL_KEY" => __DIR__ . "/infotechcorp/Config/privatekey.pem",
             "REST_CERT_PASS" => "Subject-Gawk7",//change
             "REST_ACCOUNT_ID" => "bluetech-apple@infotechcorporation.com",
             "REST_SoldTo" => "0000023532",
