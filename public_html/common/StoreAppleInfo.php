@@ -25,7 +25,7 @@ class StoreAppleInfo{
 
         $storeiStore2 =
         [
-            "REST_CERT_PATH" => __DIR__ . "/istore_two/Config//AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
+            "REST_CERT_PATH" => __DIR__ . "/istore_two/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
             "REST_SSL_KEY" => __DIR__ . "/istore_two/Config/privatekey.pem",
             "REST_CERT_PASS" => "iStore07631Englewood",
             "REST_ACCOUNT_ID" => "service@istorestm.com",
