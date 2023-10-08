@@ -35,43 +35,6 @@ services:
     networks:
       - skeleton-docker.network
 
-  # apache:
-  #   build: ./docker/apache
-  #   restart: always
-  #   container_name: skeleton-docker.apache
-  #
-  #   tty: true
-  #   networks:
-  #     - skeleton-docker.network
-  #   depends_on:
-  #     - php
-  #     - mysql
-  #     - postgres
-  #     - redis
-  #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - .:/var/www/app.dev
-
-  #  mariadb:
-  #    image: mariadb
-  #    restart: always
-  #    container_name: skeleton-docker.mariadb
-  #
-  #    tty: true
-  #    networks:
-  #      - skeleton-docker.network
-  #    ports:
-  #      - '3306:3306'
-  #    volumes:
-  #      - './docker/mysql/config/mariadb.cnf:/etc/mysql/conf.d/custom.cnf:ro'
-  #      - './docker/mysql/dbdata:/var/lib/mysql'
-  #    environment:
-  #      - MYSQL_PASSWORD=root
-  #      - MYSQL_ROOT_PASSWORD=root
-  #      - MYSQL_DATABASE=development
-
   mysql:
     build: ./docker/mysql
     restart: always
@@ -105,38 +68,6 @@ services:
         PMA_ARBITRARY: 1
      ports:
        - '8090:80'
-
-#  postgres:
-#    build: ./docker/postgres
-#    container_name: skeleton-docker.postgres
-#    restart: always
-#    tty: true
-#    networks:
-#      - skeleton-docker.network
-#    ports:
-#      - "5432:5432"
-#    volumes:
-#      - "./docker/postgres/dbdata:/var/lib/postgresql/data"
-#    environment:
-#      - POSTGRES_USER=root
-#      - POSTGRES_PASSWORD=root
-#      - POSTGRES_DB=development
-
-#  redis:
-#    image: bitnami/redis:latest
-#    restart: always
-#    container_name: skeleton-docker.redis
-#    tty: true
-#    volumes:
-#      - ./docker/redis:/bitnami/redis/data
-#    networks:
-#      - skeleton-docker.network
-#    environment:
-#      - ALLOW_EMPTY_PASSWORD=no
-#      - REDIS_PASSWORD=root
-#    ports:
-#      - "6379:6379"
-
 
 volumes:
   volumen-mysql:
