@@ -1,18 +1,22 @@
 <?php
 namespace Controllers;
 
+
+require_once __DIR__."/../Helpers/LogMsg.php";
+use Helpers\LogMsg;
+
 use DateInterval;
 use DatePeriod;
 use DateTime;
 use Models\ConfigModel;
 
-class ReservationBluetechController
+class ReservationController
 {
 
 
     static public function fetchAvailableSlots($device_type): array
     {
-        AuthBluetechController::validateToken();
+        AuthController::validateToken();
 
         $config = new ConfigModel();
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/fetch-available-slots?productCode=" . $device_type;
@@ -21,7 +25,7 @@ class ReservationBluetechController
             'X-Apple-SoldTo: ' . $config->REST_SoldTo,
             'X-Apple-ShipTo: ' . $config->REST_ShipTo,
             'X-Apple-Auth-Token: ' . $config->REST_AUTH_TOKEN,
-            'X-Apple-Service-Version: v4',
+            'X-Apple-Service-Version: v5',
             'Content-Type: application/json',
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
@@ -140,12 +144,13 @@ class ReservationBluetechController
 
     static public function create(): void
     {
-        $request = json_decode(file_get_contents('php://input'), TRUE);
-        
-        AuthBluetechController::validateToken();
+        LogMsg::message("Started create() function ");
+        AuthController::validateToken();
 
         $config = new ConfigModel();
 
+        $request = json_decode(file_get_contents('php://input'), true);
+        LogMsg::message("Request = ".$request);
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
         $date_appointment = date("Y-m-d\TH:i:s.000\Z", strtotime($request["appointment"] . " +4 hours"));
@@ -167,6 +172,7 @@ class ReservationBluetechController
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
         ];
+        LogMsg::message("Request headers = ".$request_headers);
 
         $postData ='
                     {
@@ -175,7 +181,7 @@ class ReservationBluetechController
                         "productCode": "'. $request["device"] .'"
                     },
                     "notes": {
-                        "note": "iStoreTwo Booking Reservation"
+                        "note": "Booking Reservation IStore"
                     },
                     "emailLanguageCode": "'.$lang_code.'",
                     "shipToCode": "'. $config->REST_ShipTo .'",
@@ -207,8 +213,9 @@ class ReservationBluetechController
                         "governmentId": ""
                     }
                     }';
+        LogMsg::message("Post data = ".$postData);
 
-    
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $config->REST_CERT_PATH);
@@ -219,10 +226,12 @@ class ReservationBluetechController
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-
+        
         $result = curl_exec($ch);
+        
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $data = json_decode($result);
+        LogMsg::message("data response from apple = ".$data);
       
         if ($result === false) {
             echo 'Curl error: ' . curl_error($ch);
@@ -234,8 +243,5 @@ class ReservationBluetechController
             echo json_encode($response);
         }
         curl_close($ch);
-    
     }
 }
-
-?>

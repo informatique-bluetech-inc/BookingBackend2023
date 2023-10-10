@@ -10,7 +10,7 @@ use Helpers\LogMsg;
 use Models\AuthModel;
 use Models\ConfigModel;
 
-class AuthBluetechController{
+class AuthController{
     protected static $state_token = 0;
     protected static function consultToken(){
         $config = new ConfigModel();
