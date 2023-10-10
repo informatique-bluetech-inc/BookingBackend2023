@@ -6,13 +6,13 @@ use DatePeriod;
 use DateTime;
 use Models\ConfigModel;
 
-class ReservationController
+class ReservationBluetechController
 {
 
 
     static public function fetchAvailableSlots($device_type): array
     {
-        AuthController::validateToken();
+        AuthBluetechController::validateToken();
 
         $config = new ConfigModel();
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/fetch-available-slots?productCode=" . $device_type;
@@ -21,7 +21,7 @@ class ReservationController
             'X-Apple-SoldTo: ' . $config->REST_SoldTo,
             'X-Apple-ShipTo: ' . $config->REST_ShipTo,
             'X-Apple-Auth-Token: ' . $config->REST_AUTH_TOKEN,
-            'X-Apple-Service-Version: v5',
+            'X-Apple-Service-Version: v4',
             'Content-Type: application/json',
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
@@ -57,7 +57,7 @@ class ReservationController
             echo json_encode($response);
             return;
         }
-
+        
         $hours_available = [];
         date_default_timezone_set((string) $slots[2]->storeTimeZone);
 
@@ -140,11 +140,11 @@ class ReservationController
 
     static public function create(): void
     {
-        AuthController::validateToken();
+        $request = json_decode(file_get_contents('php://input'), TRUE);
+        
+        AuthBluetechController::validateToken();
 
         $config = new ConfigModel();
-
-        $request = json_decode(file_get_contents('php://input'), true);
 
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
@@ -175,7 +175,7 @@ class ReservationController
                         "productCode": "'. $request["device"] .'"
                     },
                     "notes": {
-                        "note": "Booking Reservation IStore"
+                        "note": "iStoreTwo Booking Reservation"
                     },
                     "emailLanguageCode": "'.$lang_code.'",
                     "shipToCode": "'. $config->REST_ShipTo .'",
@@ -208,7 +208,7 @@ class ReservationController
                     }
                     }';
 
-
+    
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $config->REST_CERT_PATH);
@@ -234,5 +234,8 @@ class ReservationController
             echo json_encode($response);
         }
         curl_close($ch);
+    
     }
 }
+
+?>

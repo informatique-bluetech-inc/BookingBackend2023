@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-class RutasBluetechController
+class RutasiStoreTwoController
 {
 
     public function index(): void
@@ -11,5 +11,3 @@ class RutasBluetechController
     }
 
 }
-
-?>

@@ -32,13 +32,13 @@ if(count(array_filter($arrayRutas)) == 2){
 
   if(array_filter($arrayRutas)[1] == "istore_two"){
   require_once __DIR__."/istore_two/Controllers/RutasController.php";
-    $router = new controllers\RutasiStoreTwoController();
+    $router = new controllers\RutasBluetechController();
     $router->index();
   }
 
   if(array_filter($arrayRutas)[1] == "istore_three"){
     require_once __DIR__."/istore_three/Controllers/RutasController.php";
-    $router = new controllers\RutasiStoreThreeController();
+    $router = new controllers\RutasBluetechController();
     $router->index();
   }
 
