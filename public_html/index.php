@@ -1,17 +1,8 @@
 <?php
 
-echo "entre1";
-require_once __DIR__."/bluetech/Controllers/RutasController.php";
-echo "entre2";
-require_once __DIR__."/istore/Controllers/RutasController.php";
-echo "entre3";
 require_once __DIR__."/istore_two/Controllers/RutasController.php";
-echo "entre4";
 require_once __DIR__."/istore_three/Controllers/RutasController.php";
-echo "entre5";
 require_once __DIR__."/infotechcorp/Controllers/RutasController.php";
-echo "entre6";
-die;
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -32,10 +23,12 @@ $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
 
 if(count(array_filter($arrayRutas)) == 2){
      if(array_filter($arrayRutas)[1] == "bluetech"){
+            require_once __DIR__."/bluetech/Controllers/RutasController.php";
             $router = new controllers\RutasBluetechController();
             $router->index();
      }
      if(array_filter($arrayRutas)[1] == "istore"){
+            require_once __DIR__."/istore/Controllers/RutasController.php";
             $router = new controllers\RutasBluetechController();
             $router->index();
      }
@@ -52,4 +45,3 @@ if(count(array_filter($arrayRutas)) == 2){
        $router->index();
      }
 }
-?>
