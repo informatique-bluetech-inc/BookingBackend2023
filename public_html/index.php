@@ -1,11 +1,17 @@
 <?php
 
+echo "entre1";
 require_once __DIR__."/bluetech/Controllers/RutasController.php";
+echo "entre2";
 require_once __DIR__."/istore/Controllers/RutasController.php";
+echo "entre3";
 require_once __DIR__."/istore_two/Controllers/RutasController.php";
+echo "entre4";
 require_once __DIR__."/istore_three/Controllers/RutasController.php";
+echo "entre5";
 require_once __DIR__."/infotechcorp/Controllers/RutasController.php";
-
+echo "entre6";
+die;
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -20,8 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, DELETE, PUT, PATCH, OPTIONS');
 header('Content-Type: application/json');
-
-echo "entre";die;
 
 
 $arrayRutas = explode("/", $_SERVER['REQUEST_URI']);
