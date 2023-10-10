@@ -32,7 +32,7 @@ if(count(array_filter($arrayRutas)) == 2){
             $router->index();
      }
      if(array_filter($arrayRutas)[1] == "istore"){
-            $router = new controllers\RutasiStoreController();
+            $router = new controllers\RutasBluetechController();
             $router->index();
      }
      if(array_filter($arrayRutas)[1] == "istore_two"){
