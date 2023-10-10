@@ -2,7 +2,7 @@
 
 namespace Config;
 
-class ConfigBluetech
+class Config
 {
     static public function data()
     {
@@ -23,5 +23,3 @@ class ConfigBluetech
     }
 
 }
-
-?>

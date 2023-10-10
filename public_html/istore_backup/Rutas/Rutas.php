@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__."/../Controllers/AuthController.php";
 require_once __DIR__."/../Controllers/ReservationController.php";
 
@@ -21,14 +22,14 @@ if(count(array_filter($arrayRutas)) == 2){
 
     if(array_filter($arrayRutas)[2] == "check"){
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET") {
-            controllers\AuthBluetechController::check();
+            controllers\AuthController::check();
         }
     }
 
     if(array_filter($arrayRutas)[2] == "validate_token"){
 
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
-           controllers\AuthBluetechController::validateToken();
+           controllers\AuthController::validateToken();
         }
 
     }
@@ -37,7 +38,7 @@ if(count(array_filter($arrayRutas)) == 2){
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 
             if(isset($_GET["productCode"]) && is_string($_GET["productCode"])) {
-                controllers\ReservationBluetechController::dateAvailableSlots($_GET["productCode"]);
+                controllers\ReservationController::dateAvailableSlots($_GET["productCode"]);
             }else{
                 header('Content-Type: application/json; charset=utf-8');
                 $response = [
@@ -55,7 +56,7 @@ if(count(array_filter($arrayRutas)) == 2){
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "GET"){
 
             if(isset($_GET["productCode"]) && is_string($_GET["productCode"])) {
-                controllers\ReservationBluetechController::timeAvailableSlots($_GET["productCode"], $_GET["reservationDate"]);
+                controllers\ReservationController::timeAvailableSlots($_GET["productCode"], $_GET["reservationDate"]);
             }else{
                 header('Content-Type: application/json; charset=utf-8');
                 $response = [
@@ -70,10 +71,10 @@ if(count(array_filter($arrayRutas)) == 2){
 
 
 
-    if(str_contains(array_filter($arrayRutas)[2], "create-reservation")){
+    if(array_filter($arrayRutas)[2] == "create-reservation"){
 
         if(isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
-           controllers\ReservationBluetechController::create();
+           controllers\ReservationController::create();
         }
 
     }
@@ -81,4 +82,3 @@ if(count(array_filter($arrayRutas)) == 2){
 
 }
 
-?>
