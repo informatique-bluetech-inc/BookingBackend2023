@@ -44,7 +44,7 @@ if(count(array_filter($arrayRutas)) == 2){
 
   if(array_filter($arrayRutas)[1] == "infotechcorp"){
     require_once __DIR__."/infotechcorp/Controllers/RutasController.php";
-    $router = new controllers\RutasInfotechcorpController();
+    $router = new controllers\RutasBluetechController();
     $router->index();
   }
 }
