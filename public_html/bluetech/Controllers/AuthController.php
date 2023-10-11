@@ -117,6 +117,7 @@ class AuthBluetechController{
                     LogMsg::message("Success fully update password =)");
                 }
 
+                curl_close($ch);
                 LogMsg::message($data);
             }
         }else{
