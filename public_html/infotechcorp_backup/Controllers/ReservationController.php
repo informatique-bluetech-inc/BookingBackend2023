@@ -6,13 +6,13 @@ use DatePeriod;
 use DateTime;
 use Models\ConfigModel;
 
-class ReservationBluetechController
+class ReservationController
 {
 
 
     static public function fetchAvailableSlots($device_type): array
     {
-        AuthBluetechController::validateToken();
+        AuthController::validateToken();
 
         $config = new ConfigModel();
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/fetch-available-slots?productCode=" . $device_type;
@@ -21,7 +21,7 @@ class ReservationBluetechController
             'X-Apple-SoldTo: ' . $config->REST_SoldTo,
             'X-Apple-ShipTo: ' . $config->REST_ShipTo,
             'X-Apple-Auth-Token: ' . $config->REST_AUTH_TOKEN,
-            'X-Apple-Service-Version: v4',
+            'X-Apple-Service-Version: v5',
             'Content-Type: application/json',
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
@@ -88,6 +88,7 @@ class ReservationBluetechController
     static public function dateAvailableSlots($device_type): void
     {
         $slots = self::fetchAvailableSlots($device_type);
+       
    
         if (!($slots[1] == 200 || $slots[1] == 201)) {
             $response = [
@@ -140,11 +141,11 @@ class ReservationBluetechController
 
     static public function create(): void
     {
-        $request = json_decode(file_get_contents('php://input'), TRUE);
-        
-        AuthBluetechController::validateToken();
+        AuthController::validateToken();
 
         $config = new ConfigModel();
+
+        $request = json_decode(file_get_contents('php://input'), true);
 
         $url = $config->REST_BASE_URL . $config->REST_GSX_PATH . "/reservation/create";
 
@@ -175,7 +176,7 @@ class ReservationBluetechController
                         "productCode": "'. $request["device"] .'"
                     },
                     "notes": {
-                        "note": "InfoTechCorp Booking Reservation"
+                        "note": "New Reservation InfoTechCorp"
                     },
                     "emailLanguageCode": "'.$lang_code.'",
                     "shipToCode": "'. $config->REST_ShipTo .'",
@@ -208,7 +209,7 @@ class ReservationBluetechController
                     }
                     }';
 
-    
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $config->REST_CERT_PATH);
@@ -234,8 +235,5 @@ class ReservationBluetechController
             echo json_encode($response);
         }
         curl_close($ch);
-    
     }
 }
-
-?>

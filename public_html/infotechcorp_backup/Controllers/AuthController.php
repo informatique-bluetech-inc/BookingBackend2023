@@ -10,7 +10,7 @@ use Helpers\LogMsg;
 use Models\AuthModel;
 use Models\ConfigModel;
 
-class AuthBluetechController{
+class AuthController{
     protected static $state_token = 0;
     protected static function consultToken(){
         $config = new ConfigModel();
@@ -64,7 +64,6 @@ class AuthBluetechController{
         $last_update_auth_token =  $token['updated_at'];
         $minutes_diff = strtotime($last_update_auth_token);
         $minutes_last_update = round(abs($currentDate -  $minutes_diff) / 60);
-
 
         if($minutes_last_update >= 30 || self::$state_token == 1) {
 
