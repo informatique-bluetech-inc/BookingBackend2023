@@ -2,11 +2,11 @@
 ====== BLUETECH: BluetechAppleGSX2022 ========
 
 1- Validate if certificates are ok. 
-curl -X GET https://api-partner-connect.apple.com/api/authenticate/check -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-SoldTo: 0001259855' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem'
+curl --proxy 3.99.27.167:8888 -X GET https://api-partner-connect.apple.com/api/authenticate/check -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-SoldTo: 0001259855' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem'
 
 
 2- List available slots 
-curl -X  GET https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=MAC -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: 0efd8f0e-2f63-406a-8a1d-d011e947533j' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: gsxapi@ibluetech.ca' -H 'X-Apple-Client-Locale: en-US' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem'
+curl --proxy 3.99.27.167:8888 -X  GET https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=MAC -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: 0efd8f0e-2f63-406a-8a1d-d011e947533j' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: gsxapi@ibluetech.ca' -H 'X-Apple-Client-Locale: en-US' --cert 'public_html/common/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'public_html/common/bluetech/Config/privatekey.pem' --pass BluetechAppleGSX2022
 
 
 curl -X  GET https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=MAC -H 'X-Apple-SoldTo: 0001259855' -H 'X-Apple-ShipTo: 0001259855' -H 'X-Apple-Auth-Token: 0efd8f0e-2f63-406a-8a1d-d011e947533j' -H 'X-Apple-Service-Version: v5' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'X-Operator-User-ID: gsxapi@ibluetech.ca' -H 'X-Apple-Client-Locale: en-US' --cert 'AppleCare-Partner-0001259855.Prod.apple.com.cert.pem' --key 'privatekey.pem'

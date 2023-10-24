@@ -63,7 +63,9 @@ class RutasController {
 
                     if(isset($_GET["productCode"]) && is_string($_GET["productCode"])) {
 
-                        header('Content-Type: application/json; charset=utf-8');
+                        //header('Content-Type: application/json; charset=utf-8');
+                        header('Content-Type: application/json');
+                        header('Age: 24');
                         $controller = new ReservationController();
                         $response = $controller->getDateAvailableSlots(
                             $storeName,

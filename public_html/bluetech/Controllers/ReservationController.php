@@ -21,7 +21,7 @@ class ReservationBluetechController
             'X-Apple-SoldTo: ' . $config->REST_SoldTo,
             'X-Apple-ShipTo: ' . $config->REST_ShipTo,
             'X-Apple-Auth-Token: ' . $config->REST_AUTH_TOKEN,
-            'X-Apple-Service-Version: v4',
+            'X-Apple-Service-Version: v5',
             'Content-Type: application/json',
             'Accept: application/json',
             'X-Apple-Client-Locale: en-US'
@@ -34,8 +34,16 @@ class ReservationBluetechController
         curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $config->REST_CERT_PASS);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true); // enable tracking
 
+        
         $result = curl_exec($ch);
+
+        //echo "sergio statusCode";
+        //var_dump(curl_getinfo($ch));
+        echo "header request // ";
+        var_dump(curl_getinfo($ch, CURLINFO_HEADER_OUT ));
+
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($statusCode == 200 || $statusCode == 201) {
             return [$ch, $statusCode, json_decode($result)];

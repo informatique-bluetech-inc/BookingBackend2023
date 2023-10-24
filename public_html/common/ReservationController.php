@@ -12,15 +12,15 @@ class ReservationController{
     public function getDateAvailableSlots($storeName, $deviceType): array
     {
 
+        
         //create a logger variable
         $messageLog = array();
         $clazzMethod = "AuthController.getDateAvailableSlots";
         $messageLog[] = "Started ".$clazzMethod. " with parameters storeName = ".$storeName.", deviceType = ".$deviceType;
-
+        
         //get the slots available
         $messageLog[] = "Calling to fetchAllAvailableSlots()";
         $resultAvailableSlots = $this->fetchAllAvailableSlots($deviceType, $storeName);
-        
         
         foreach($resultAvailableSlots["log"] as $log){
             $messageLog[] = $log;
@@ -103,7 +103,6 @@ class ReservationController{
         $url = "https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?";
         $url = $url . "productCode=". $device_type;
         $messageLog[] = "Url api apple = ".$url;
-
         //create a instance of database
         $database = new AccessData();
         $sql = "select id, token, token_updated_at from store_tokens 
@@ -144,17 +143,14 @@ class ReservationController{
         $messageLog[] = "REST_SSL_KEY  = ".($storeInfo["REST_SSL_KEY"]);
         $messageLog[] = "REST_CERT_PASS  = ".($storeInfo["REST_CERT_PASS"]);
 
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSLCERT, $storeInfo["REST_CERT_PATH"]);
         curl_setopt($ch, CURLOPT_SSLKEY, $storeInfo["REST_SSL_KEY"]);
         curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $storeInfo["REST_CERT_PASS"]);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60); 
-        curl_setopt($ch, CURLOPT_TIMEOUT, 60); 
-        curl_setopt($ch, CURLOPT_MAXLIFETIME_CONN, 60);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true); // enable tracking
 
         $result = curl_exec($ch);
         if($result === false){
@@ -165,12 +161,23 @@ class ReservationController{
 
         $messageLog[] = "This is response from apple = ". ($result);
         $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        echo "sergio statusCode";
+        var_dump(curl_getinfo($ch));
+        echo "hader request";
+        var_dump(curl_getinfo($ch, CURLINFO_HEADER_OUT )); 
+        /*echo "sergio getinfo";
+        var_dump(curl_getinfo($ch));die;*/
+
+        
         
         if(! ($this->isResponse2xx($statusCode)) ){//if apple response is not ok
             $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
             http_response_code($statusCode);
+            curl_close($ch);
             return [ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog];
         }
+        curl_close($ch);
 
         http_response_code(200);
         return [ "status" => $statusCode, "response" => $result, "log"=> $messageLog ];
