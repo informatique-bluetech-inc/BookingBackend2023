@@ -16,7 +16,6 @@ if (! isset($_GET['product_code']) ){
 }
 
 header('Content-Type: application/json');
-header('Age: 24');
 
 $token = $_GET['token'];
 $storeName = $_GET['store_name'];
