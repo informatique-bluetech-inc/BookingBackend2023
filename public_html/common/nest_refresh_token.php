@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: application/json');
+
 if (! isset($_GET['token']) ){
     echo json_encode ([ "status" => 400, "response" => "Token is required"]);
     http_response_code(400);
@@ -67,6 +69,7 @@ $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 if(! (isResponse2xx($statusCode)) ){//if apple response is not ok
     $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
+    http_response_code($statusCode);
     echo json_encode ([ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog]);
     return;
 }
