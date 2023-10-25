@@ -25,7 +25,7 @@ class StoreAppleInfo{
 
         $storeiStore2 =
         [
-            "REST_CERT_PATH" => __DIR__ . "/istore_two/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pemXXX",
+            "REST_CERT_PATH" => __DIR__ . "/istore_two/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
             "REST_SSL_KEY" => __DIR__ . "/istore_two/Config/privatekey.pem",
             "REST_CERT_PASS" => "iStore07631Englewood",
             "REST_ACCOUNT_ID" => "service@istorestm.com",
@@ -35,7 +35,7 @@ class StoreAppleInfo{
 
         $storeiStore3 =
         [
-            "REST_CERT_PATH" => __DIR__ . "/istore_three/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pemXXX",
+            "REST_CERT_PATH" => __DIR__ . "/istore_three/Config/AppleCare-Partner-0001054076.Prod.apple.com.chain.pem",
             "REST_SSL_KEY" => __DIR__ . "/istore_three/Config/privatekey.pem",
             "REST_CERT_PASS" => "iStore07631Englewood",
             "REST_ACCOUNT_ID" => "service@istorestm.com",
@@ -45,7 +45,7 @@ class StoreAppleInfo{
 
         $storeInfoTechCorp =
         [
-            "REST_CERT_PATH" => __DIR__ . "/infotechcorp/Config/AppleCare-Partner-0000023532.Prod.apple.com.chain.pemXXX",
+            "REST_CERT_PATH" => __DIR__ . "/infotechcorp/Config/AppleCare-Partner-0000023532.Prod.apple.com.chain.pem",
             "REST_SSL_KEY" => __DIR__ . "/infotechcorp/Config/privatekey.pem",
             "REST_CERT_PASS" => "Subject-Gawk7",//change
             "REST_ACCOUNT_ID" => "bluetech-apple@infotechcorporation.com",
@@ -54,7 +54,7 @@ class StoreAppleInfo{
         ];
 
         $BLUETECH = "bluetech";
-        $ISTORE1 = "istore1";
+        $ISTORE1 = "istore";
         $ISTORE2 = "istore2";
         $ISTORE3 = "istore3";
         $INFOTECHCORP = "infotechcorp";
