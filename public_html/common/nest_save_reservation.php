@@ -128,7 +128,7 @@ if($result === false){
     echo json_encode ([ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog]);
     return;
 }
-
+print_r($result);die;
 $messageLog[] = "This is response from apple = ". ($result);
 
 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
