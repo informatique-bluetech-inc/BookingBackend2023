@@ -18,6 +18,7 @@ if (! isset($_GET['product_code']) ){
     return;
 }
 
+
 $storedToken = $_GET['token'];
 $storeName = $_GET['store_name'];
 $productCode = $_GET['product_code'];
@@ -66,7 +67,7 @@ $requestHeaders = array(
 );
 
 $laguageCode = $requestBody['languageCode'];
-$dateTimeAppointment = $requestBody['scheduledTime'];//esta hora debe estar en utc0
+echo $dateTimeAppointment = $requestBody['scheduledTime'];//esta hora debe estar en utc0
 $deviceSerial = $requestBody['deviceSerial'];
 
 $postData = '
@@ -128,8 +129,8 @@ if($result === false){
     echo json_encode ([ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog]);
     return;
 }
+
 print_r($result);die;
-$messageLog[] = "This is response from apple = ". ($result);
 
 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 

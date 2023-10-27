@@ -54,7 +54,7 @@ class StoreAppleInfo{
         ];
 
         $BLUETECH = "bluetech";
-        $ISTORE1 = "istore";
+        $ISTORE1 = "istore1";
         $ISTORE2 = "istore2";
         $ISTORE3 = "istore3";
         $INFOTECHCORP = "infotechcorp";
