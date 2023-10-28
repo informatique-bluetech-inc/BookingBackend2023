@@ -75,8 +75,10 @@ if(! (isResponse2xx($statusCode)) ){//if apple response is not ok
     return;
 }
 
-print_r($result);die;
+
 http_response_code(200);
+print_r($result);die;
+
 echo json_encode ([ "status" => $statusCode, "response" => $result, "log"=> $messageLog ]);
 return;
 
