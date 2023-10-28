@@ -67,7 +67,7 @@ $requestHeaders = array(
 );
 
 $laguageCode = $requestBody['languageCode'];
-echo $dateTimeAppointment = $requestBody['scheduledTime'];//esta hora debe estar en utc0
+$dateTimeAppointment = $requestBody['scheduledTime'];//esta hora debe estar en utc0
 $deviceSerial = $requestBody['deviceSerial'];
 
 $postData = '
