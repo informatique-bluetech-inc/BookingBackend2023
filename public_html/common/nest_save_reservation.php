@@ -130,7 +130,7 @@ if($result === false){
     return;
 }
 
-print_r($result);die;
+//print_r($result);die;
 
 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
