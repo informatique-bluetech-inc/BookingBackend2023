@@ -67,6 +67,7 @@ if($result === false){
 $messageLog[] = "This is response from apple = ". ($result);
 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
+
 if(! (isResponse2xx($statusCode)) ){//if apple response is not ok
     $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
     http_response_code($statusCode);
@@ -74,6 +75,7 @@ if(! (isResponse2xx($statusCode)) ){//if apple response is not ok
     return;
 }
 
+print_r($result);
 http_response_code(200);
 echo json_encode ([ "status" => $statusCode, "response" => $result, "log"=> $messageLog ]);
 return;
