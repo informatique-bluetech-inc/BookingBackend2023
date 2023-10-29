@@ -126,7 +126,6 @@ $result = curl_exec($ch);
 if($result === false){
     $messageLog[] = "Error trying to reach apple service. Next line is the error.";
     $messageLog[] = curl_error($ch);
-    $messageLog[] = curl_getinfo($ch);
     http_response_code(500);
     echo json_encode ([ "status" => 500, "response" => curl_error($ch), "log"=> $messageLog]);
     return;
@@ -139,7 +138,6 @@ $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 if(! (isResponse2xx($statusCode)) ){//if apple response is not ok
     $messageLog[] = "Error returned by apple. Next line is the error.";
     $messageLog[] = $result;
-    $messageLog[] = curl_getinfo($ch);
     echo json_encode ([ "status" => $statusCode, "response" => $result, "log"=> $messageLog]);
     http_response_code($statusCode);
     return;
