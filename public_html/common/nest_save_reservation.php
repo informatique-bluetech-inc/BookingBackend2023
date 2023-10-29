@@ -138,7 +138,7 @@ $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 if(! (isResponse2xx($statusCode)) ){//if apple response is not ok
     $messageLog[] = "Error returned by apple. Next line is the error.";
     $messageLog[] = $result;
-    echo json_encode ([ "status" => $statusCode, "response" => $result, "log"=> $messageLog]);
+    echo json_encode ([ "status" => $statusCode, "response" => json_decode($result), "log"=> $messageLog]);
     http_response_code($statusCode);
     return;
 }
