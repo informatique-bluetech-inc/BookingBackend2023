@@ -124,9 +124,11 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 $result = curl_exec($ch);
 if($result === false){
-    $messageLog[] = "This is error trying to consume apple api = ". json_encode(curl_error($ch));
+    $messageLog[] = "Error trying to reach apple service. Next line is the error.";
+    $messageLog[] = curl_error($ch);
+    $messageLog[] = curl_getinfo($ch);
     http_response_code(500);
-    echo json_encode ([ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog]);
+    echo json_encode ([ "status" => 500, "response" => curl_error($ch), "log"=> $messageLog]);
     return;
 }
 
@@ -135,9 +137,11 @@ if($result === false){
 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 if(! (isResponse2xx($statusCode)) ){//if apple response is not ok
+    $messageLog[] = "Error returned by apple. Next line is the error.";
+    $messageLog[] = $result;
+    $messageLog[] = curl_getinfo($ch);
+    echo json_encode ([ "status" => $statusCode, "response" => $result, "log"=> $messageLog]);
     http_response_code($statusCode);
-    $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
-    echo json_encode ([ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog]);
     return;
 }
 
