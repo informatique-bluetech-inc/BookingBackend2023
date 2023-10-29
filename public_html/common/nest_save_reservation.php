@@ -55,7 +55,6 @@ require_once __DIR__ . "/StoreAppleInfo.php";
 $storeAppleInfoService = new StoreAppleInfo();
 $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
 $url = "https://api-partner-connect.apple.com/gsx/api/reservation/create";
-$url = "https://cosa123cosa456/create";
 
 $requestHeaders = array(
     'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
