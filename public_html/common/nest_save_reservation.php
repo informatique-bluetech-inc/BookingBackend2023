@@ -54,7 +54,7 @@ $messageLog[] = "productCode ".$productCode;
 require_once __DIR__ . "/StoreAppleInfo.php";
 $storeAppleInfoService = new StoreAppleInfo();
 $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
-$url = "https://api-partner-connect.apple.com/gsx/api/reservation/create";
+$url = "https://api-partner-connect.apple.com/gsx/api/reservation/createX";
 
 $requestHeaders = array(
     'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
