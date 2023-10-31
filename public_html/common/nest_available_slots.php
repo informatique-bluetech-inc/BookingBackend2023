@@ -40,7 +40,7 @@ $requestHeaders = [
     'X-Apple-Trace-ID: ' . $token,
     'X-Operator-User-ID: ' . $storeInfo["REST_ACCOUNT_ID"],
     'X-Apple-Client-Timezone: America/New_York',
-    'X-Apple-Service-Version: v5',
+    'X-Apple-Service-Version: v4',
     'Content-Type: application/json',
     'Accept: application/json',
     'X-Apple-Client-Locale: en-US'
