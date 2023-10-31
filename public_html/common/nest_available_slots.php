@@ -38,7 +38,7 @@ $requestHeaders = [
     'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
     'X-Apple-Auth-Token: ' . $token,
     'X-Apple-Trace-ID: ' . $token,
-    //'X-Operator-User-ID: ' . $aqui va el user id,
+    'X-Operator-User-ID: ' . $storeInfo["REST_ACCOUNT_ID"],
     'X-Apple-Client-Timezone: America/New_York',
     'X-Apple-Service-Version: v5',
     'Content-Type: application/json',
