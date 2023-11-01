@@ -40,7 +40,7 @@ $requestHeaders = [
     'X-Apple-Trace-ID: ' . $token,
     'X-Operator-User-ID: ' . $storeInfo["REST_ACCOUNT_ID"],
     'X-Apple-Client-Timezone: America/New_York',
-    'X-Apple-Service-Version: v4',
+    'X-Apple-Service-Version: v5',
     'Content-Type: application/json',
     'Accept: application/json',
     'X-Apple-Client-Locale: en-US'
@@ -62,28 +62,34 @@ curl_setopt($ch, CURLINFO_HEADER_OUT, true); // enable tracking
 
 $result = curl_exec($ch);
 if($result === false){
-    $messageLog[] = "This is error trying to consume apple api = ". json_encode(curl_error($ch));
+    $messageLog[] = "Error trying to reach apple service. Next line is the error.";
+    $messageLog[] = curl_error($ch);
     http_response_code(500);
-    echo json_encode ([ "status" => 500, "response" => "Error trying to consume apple api", "log"=> $messageLog]);
+    echo json_encode ([ "status" => 500, "response" => curl_error($ch), "log"=> $messageLog]);
     return;
 }
+
+//print_r($result);die;
+$resultObj = json_decode($result);
 
 $messageLog[] = "This is response from apple = ". ($result);
 
 $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 if(! (isResponse2xx($statusCode)) ){//if apple response is not ok
-    
-    $messageLog[] = "This is error from apple api = ". json_encode(curl_error($ch));
-    echo json_encode ([ "status" => $statusCode, "response" => "Error from apple api ", "log"=> $messageLog]);
+    $messageLog[] = "Error returned by apple. Next line is the error.";
+    $messageLog[] = $result;
+    echo json_encode ([ "status" => $statusCode, "response" => $resultObj, "log"=> $messageLog]);
+    http_response_code($statusCode);
     return;
 }
 
-
-
+$messageLog[] = "Apple response is ok. This is the body.";
+$messageLog[] = $result;
 http_response_code(200);
-echo json_encode ([ "status" => $statusCode, "response" => $result, "log"=> $messageLog ]);
+echo json_encode ([ "status" => $statusCode, "response" => $resultObj, "log"=> $messageLog ]);
 return;
+
 
 function isResponse2xx($statusCode){
     $statusCodeString = (string)$statusCode;
