@@ -77,7 +77,7 @@ $postData = '
         "productCode": "'. $requestBody["deviceType"] .'"
     },
     "notes": {
-        "note": "Booking Reservation"
+        "note": "Reserved By BluCal"
     },
     "emailLanguageCode": "'.$laguageCode.'",
     "shipToCode": "'. $storeInfo["REST_ShipTo"].'",
