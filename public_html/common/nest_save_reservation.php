@@ -1,5 +1,4 @@
 <?php
-
 header('Content-Type: application/json');
 
 if (! isset($_GET['token']) ){
@@ -18,30 +17,9 @@ if (! isset($_GET['product_code']) ){
     return;
 }
 
-
 $storedToken = $_GET['token'];
 $storeName = $_GET['store_name'];
 $productCode = $_GET['product_code'];
-
-/*
-export interface ReservationToSaveDto {
-  deviceType: string;
-  bookDate: string;
-  scheduledTime: string;
-  deviceSerial: string;
-  customer: Client;
-  description: string;
-  storeId: string;
-  languageCode: string
-}
-
-export interface Client {
-  name: string;
-  lastname: string;
-  phone: string;
-  email: string;
-}
-*/
 $inputJSON = file_get_contents('php://input');
 $requestBody = json_decode($inputJSON, TRUE); //convert JSON into array
 
@@ -57,8 +35,8 @@ $storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
 $url = "https://api-partner-connect.apple.com/gsx/api/reservation/create";
 
 $requestHeaders = array(
-    'X-Apple-SoldTo: ' . $storeInfo["REST_SoldTo"],
-    'X-Apple-ShipTo: ' . $storeInfo["REST_ShipTo"],
+    'X-Apple-SoldTo: ' . $requestBody["REST_SoldTo"],
+    'X-Apple-ShipTo: ' . $requestBody["REST_ShipTo"],
     'X-Apple-Auth-Token: ' . $storedToken,
     'X-Apple-Service-Version: v5',
     'Content-Type: application/json',
@@ -80,7 +58,7 @@ $postData = '
         "note": "Reserved By BluCal"
     },
     "emailLanguageCode": "'.$laguageCode.'",
-    "shipToCode": "'. $storeInfo["REST_ShipTo"].'",
+    "shipToCode": "'. $requestBody["REST_ShipTo"].'",
     "reservationType": "CIN",
     "correlationId": "12345",
     "reservationDate": "'.$dateTimeAppointment.'",
@@ -113,9 +91,9 @@ $postData = '
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_SSLCERT, $storeInfo["REST_CERT_PATH"]);
-curl_setopt($ch, CURLOPT_SSLKEY, $storeInfo["REST_SSL_KEY"]);
-curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $storeInfo["REST_CERT_PASS"]);
+curl_setopt($ch, CURLOPT_SSLCERT, $requestBody["REST_CERT_PATH"]);
+curl_setopt($ch, CURLOPT_SSLKEY, $requestBody["REST_SSL_KEY"]);
+curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $requestBody["REST_CERT_PASS"]);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
