@@ -53,7 +53,7 @@ class StoreAppleInfo{
             "REST_ShipTo" => "0000023532"
         ];
 
-        $storeteckfx =
+        $storeTeckFx =
         [
             "REST_CERT_PATH" => __DIR__ . "/techfx/config/AppleCare-Partner-0000595651.Prod.apple.com.chain.pem",
             "REST_SSL_KEY" => __DIR__ . "/infotechcorp/Config/clef-sans-pass-phrase.pem",
