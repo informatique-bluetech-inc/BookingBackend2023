@@ -77,7 +77,7 @@ class StoreAppleInfo{
             $ISTORE1 => $storeiStore1,
             $ISTORE2 => $storeiStore2,
             $ISTORE3 => $storeiStore3,
-            $INFOTECHCORP => $storeInfoTechCorp
+            $INFOTECHCORP => $storeInfoTechCorp,
             $TECKFX => $storeTeckFx
         ];
 
