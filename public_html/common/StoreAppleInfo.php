@@ -53,11 +53,22 @@ class StoreAppleInfo{
             "REST_ShipTo" => "0000023532"
         ];
 
+        $storeTeckFx =
+        [
+            "REST_CERT_PATH" => __DIR__ . "/techfx/Config/AppleCare-Partner-0000595651.Prod.apple.com.chain.pem",
+            "REST_SSL_KEY" => __DIR__ . "/techfx/Config/clef-sans-pass-phrase.pem",
+            //"REST_CERT_PASS" => "Subject-Gawk7", The Client removed the passphrase
+            "REST_ACCOUNT_ID" => "apple@teckfx.com",
+            "REST_SoldTo" => "0000595651",
+            "REST_ShipTo" => "0000595651"
+        ];
+
         $BLUETECH = "bluetech";
         $ISTORE1 = "istore1";
         $ISTORE2 = "istore2";
         $ISTORE3 = "istore3";
         $INFOTECHCORP = "infotechcorp";
+        $TECKFX = "teckfx";
 
         //create array with elements as stores
         $arrayStores =
@@ -67,6 +78,7 @@ class StoreAppleInfo{
             $ISTORE2 => $storeiStore2,
             $ISTORE3 => $storeiStore3,
             $INFOTECHCORP => $storeInfoTechCorp
+            $TECKFX => $storeTeckFx
         ];
 
         return $arrayStores[$store];
