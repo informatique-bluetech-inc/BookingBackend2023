@@ -57,7 +57,7 @@ class StoreAppleInfo{
         [
             "REST_CERT_PATH" => __DIR__ . "/teckfx/Config/AppleCare-Partner-0000595651.Prod.apple.com.chain.pem",
             "REST_SSL_KEY" => __DIR__ . "/teckfx/Config/clef-sans-pass-phrase.pem",
-            "REST_CERT_PASS" => "Subject-Gawk7",
+            //"REST_CERT_PASS" => "Subject-Gawk7",
             "REST_ACCOUNT_ID" => "apple@teckfx.com",
             "REST_SoldTo" => "0000595651",
             "REST_ShipTo" => "0000595651"
