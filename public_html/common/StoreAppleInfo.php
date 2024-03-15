@@ -7,7 +7,7 @@ class StoreAppleInfo{
         [
             "REST_CERT_PATH" => __DIR__ . "/bluetech/Config/AppleCare-Partner-0001259855.Prod.apple.com.cert.pem",
             "REST_SSL_KEY" =>__DIR__."/bluetech/Config/privatekey.pem",
-            "REST_CERT_PASS" => "BluetechAppleGSX2022",
+            "REST_CERT_PASS" => "STLblupple22$",
             "REST_ACCOUNT_ID" => "gsxapi@ibluetech.ca",
             "REST_SoldTo" => "0001259855",
             "REST_ShipTo" => "0001259855"
