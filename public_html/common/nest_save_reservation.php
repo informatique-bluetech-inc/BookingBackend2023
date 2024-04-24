@@ -21,7 +21,7 @@ $storedToken = $_GET['token'];
 $storeName = $_GET['store_name'];
 $productCode = $_GET['product_code'];
 $inputJSON = file_get_contents('php://input');
-$requestBody = json_decode($inputJSON, TRUE); //convert JSON into array
+$requestBody = json_decode($inputJSON, TRUE);  //convert JSON into array
 
 
 $messageLog = [];
@@ -29,9 +29,7 @@ $messageLog[] = "Token ".$storedToken;
 $messageLog[] = "storeName ".$storeName;
 $messageLog[] = "productCode ".$productCode;
 
-require_once __DIR__ . "/StoreAppleInfo.php";
-$storeAppleInfoService = new StoreAppleInfo();
-$storeInfo = $storeAppleInfoService->getStoreAppleInfoByStore($storeName);
+
 $url = "https://api-partner-connect.apple.com/gsx/api/reservation/create";
 
 $requestHeaders = array(
