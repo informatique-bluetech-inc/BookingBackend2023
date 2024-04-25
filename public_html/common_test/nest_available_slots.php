@@ -24,9 +24,9 @@ $rest_sold_to = $_GET["rest_sold_to"];
 $rest_ship_to = $_GET["rest_ship_to"];
 $rest_account_id = $_GET["rest_account_id"];
 
-$rest_cert_path = __DIR__ . $_GET["rest_cert_path"];
-$ssl_key = __DIR__ .$_GET["rest_ssl_key"];
-$cert_pass = __DIR__ .$_GET["rest_cert_pass"];
+$rest_cert_path = __DIR__ ."'"+$_GET["rest_cert_path"]+"'";
+$ssl_key = __DIR__ ."'"+$_GET["rest_ssl_key"]+"'";
+$cert_pass = __DIR__ ."'"+$_GET["rest_cert_pass"]+"'";
 
 $messageLog = array();
 
