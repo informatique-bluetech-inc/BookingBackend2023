@@ -20,13 +20,13 @@ header('Content-Type: application/json');
 $token = $_GET['token'];
 $storeName = $_GET['store_name'];
 $productCode = $_GET['product_code'];
-$rest_sold_to = $_GET["REST_SoldTo"];
-$rest_ship_to = $_GET["REST_ShipTo"];
-$rest_account_id = $_GET["REST_ACCOUNT_ID"];
+$rest_sold_to = $_GET["rest_sold_to"];
+$rest_ship_to = $_GET["rest_ship_to"];
+$rest_account_id = $_GET["rest_account_id"];
 
-$rest_cert_path = __DIR__ . $_GET["REST_CERT_PATH"];
-$ssl_key = __DIR__ .$_GET["REST_SSL_KEY"];
-$cert_pass = __DIR__ .$_GET["REST_CERT_PASS"];
+$rest_cert_path = __DIR__ . $_GET["rest_cert_path"];
+$ssl_key = __DIR__ .$_GET["rest_ssl_key"];
+$cert_pass = __DIR__ .$_GET["rest_cert_pass"];
 
 $messageLog = array();
 
