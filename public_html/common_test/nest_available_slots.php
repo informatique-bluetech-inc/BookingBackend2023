@@ -3,17 +3,67 @@ if (!isset($_GET['token'])) {
     echo json_encode(["status" => 400, "response" => "Token is required"]);
     http_response_code(400);
     return;
+} else {
+    echo json_encode(["status"=> 200,""=> $_GET['token']]);
 }
 if (!isset($_GET['store_name'])) {
     echo json_encode(["status" => 400, "response" => "Store name is required"]);
     http_response_code(400);
     return;
+}else {
+    echo json_encode(["status"=> 200,""=> $_GET['store_name']]);
 }
 if (!isset($_GET['product_code'])) {
     echo json_encode(["status" => 400, "response" => "Product code is required"]);
     http_response_code(400);
     return;
+}else {
+    echo json_encode(["status"=> 200,""=> $_GET['product_code']]);
 }
+if (!isset($_GET['rest_sold_to'])) {
+    echo json_encode(["status" => 400, "response" => "Product code is required"]);
+    http_response_code(400);
+    return;
+}else {
+    echo json_encode(["status"=> 200,""=> $_GET['rest_sold_to']]);
+}
+if (!isset($_GET['rest_ship_to'])) {
+    echo json_encode(["status" => 400, "response" => "Product code is required"]);
+    http_response_code(400);
+    return;
+}else {
+    echo json_encode(["status"=> 200,""=> $_GET['rest_ship_to']]);
+}
+if (!isset($_GET['rest_account_id'])) {
+    echo json_encode(["status" => 400, "response" => "Product code is required"]);
+    http_response_code(400);
+    return;
+}else {
+    echo json_encode(["status"=> 200,""=> $_GET['rest_account_id']]);
+}
+if (!isset($_GET['rest_cert_path'])) {
+    echo json_encode(["status" => 400, "response" => "Product code is required"]);
+    http_response_code(400);
+    return;
+}else {
+    echo json_encode(["status"=> 200,""=> $_GET['rest_cert_path']]);
+}
+if (!isset($_GET['rest_ssl_key'])) {
+    echo json_encode(["status" => 400, "response" => "Product code is required"]);
+    http_response_code(400);
+    return;
+}else {
+    echo json_encode(["status"=> 200,""=> $_GET['rest_ssl_key']]);
+}
+if (!isset($_GET['rest_cert_pass'])) {
+    echo json_encode(["status" => 400, "response" => "Product code is required"]);
+    http_response_code(400);
+    return;
+}else {
+    echo json_encode(["status"=> 200,""=> $_GET['rest_cert_pass']]);
+}
+
+
 
 header('Content-Type: application/json');
 
@@ -24,9 +74,9 @@ $rest_sold_to = $_GET["rest_sold_to"];
 $rest_ship_to = $_GET["rest_ship_to"];
 $rest_account_id = $_GET["rest_account_id"];
 
-$rest_cert_path = __DIR__ ."'"+$_GET["rest_cert_path"]+"'";
-$ssl_key = __DIR__ ."'"+$_GET["rest_ssl_key"]+"'";
-$cert_pass = __DIR__ ."'"+$_GET["rest_cert_pass"]+"'";
+$rest_cert_path = __DIR__ .$_GET["rest_cert_path"];
+$ssl_key = __DIR__ .$_GET["rest_ssl_key"];
+$cert_pass = __DIR__ .$_GET["rest_cert_pass"];
 
 $messageLog = array();
 
