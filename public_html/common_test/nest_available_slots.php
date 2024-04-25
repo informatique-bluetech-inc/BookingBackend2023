@@ -23,9 +23,11 @@ $productCode = $_GET['product_code'];
 $rest_sold_to = $_GET["REST_SoldTo"];
 $rest_ship_to = $_GET["REST_ShipTo"];
 $rest_account_id = $_GET["REST_ACCOUNT_ID"];
-$rest_cert_path = $_GET["REST_CERT_PATH"];
-$ssl_key = $_GET["REST_SSL_KEY"];
-$cert_pass = $_GET["REST_CERT_PASS"];
+
+
+//$rest_cert_path = $_GET["REST_CERT_PATH"];
+//$ssl_key = $_GET["REST_SSL_KEY"];
+//$cert_pass = $_GET["REST_CERT_PASS"];
 
 $messageLog = array();
 
