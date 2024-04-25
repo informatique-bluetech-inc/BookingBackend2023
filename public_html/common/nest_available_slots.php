@@ -20,9 +20,13 @@ header('Content-Type: application/json');
 $token = $_GET['token'];
 $storeName = $_GET['store_name'];
 $productCode = $_GET['product_code'];
+$rest_sold_to = $_GET["REST_SoldTo"];
+$rest_ship_to = $_GET["REST_ShipTo"];
+$rest_account_id = $_GET["REST_ACCOUNT_ID"];
+$rest_cert_path = $_GET["REST_CERT_PATH"];
+$ssl_key = $_GET["REST_SSL_KEY"];
+$cert_pass = $_GET["REST_CERT_PASS"];
 
-$inputJSON = file_get_contents('php://input');
-$requestBody = json_decode($inputJSON, TRUE);
 $messageLog = array();
 
 $messageLog[] = "Token parameter " . $token;
@@ -31,11 +35,11 @@ $messageLog[] = "productCode parameter " . $productCode;
 
 $url = "https://api-partner-connect.apple.com/gsx/api/reservation/fetch-available-slots?productCode=" . $productCode;
 $requestHeaders = [
-    'X-Apple-SoldTo: ' . $requestBody["REST_SoldTo"],
-    'X-Apple-ShipTo: ' . $requestBody["REST_ShipTo"],
+    'X-Apple-SoldTo: ' . $rest_sold_to,
+    'X-Apple-ShipTo: ' . $rest_ship_to,
     'X-Apple-Auth-Token: ' . $token,
     'X-Apple-Trace-ID: ' . $token,
-    'X-Operator-User-ID: ' . $requestBody["REST_ACCOUNT_ID"],
+    'X-Operator-User-ID: ' . $rest_account_id,
     'X-Apple-Client-Timezone: America/New_York',
     'X-Apple-Service-Version: v5',
     'Content-Type: application/json',
@@ -43,15 +47,15 @@ $requestHeaders = [
     'X-Apple-Client-Locale: en-US'
 ];
 $messageLog[] = "requestHeaders  = " . json_encode($requestHeaders);
-$messageLog[] = "REST_CERT_PATH  = " . ($requestBody["REST_CERT_PATH"]);
-$messageLog[] = "REST_SSL_KEY  = " . ($requestBody["REST_SSL_KEY"]);
-$messageLog[] = "REST_CERT_PASS  = " . ($requestBody["REST_CERT_PASS"]);
+$messageLog[] = "REST_CERT_PATH  = " . ($rest_cert_path);
+$messageLog[] = "REST_SSL_KEY  = " . ($ssl_key);
+$messageLog[] = "REST_CERT_PASS  = " . ($cert_pass);
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_SSLCERT, $requestBody["REST_CERT_PATH"]);
-curl_setopt($ch, CURLOPT_SSLKEY, $requestBody["REST_SSL_KEY"]);
-curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $requestBody["REST_CERT_PASS"]);
+curl_setopt($ch, CURLOPT_SSLCERT, $rest_cert_path);
+curl_setopt($ch, CURLOPT_SSLKEY, $ssl_key);
+curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $cert_pass);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $requestHeaders);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLINFO_HEADER_OUT, true); // enable tracking

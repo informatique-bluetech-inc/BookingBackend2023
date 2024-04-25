@@ -16,14 +16,21 @@ $storeName = $_GET['store_name'];
 $inputJSON = file_get_contents('php://input');
 $requestBody = json_decode($inputJSON, TRUE);
 
+$rest_sold_to = $_GET["REST_SoldTo"];
+$rest_ship_to = $_GET["REST_ShipTo"];
+$rest_account_id = $_GET["REST_ACCOUNT_ID"];
+$rest_cert_path = $_GET["REST_CERT_PATH"];
+$ssl_key = $_GET["REST_SSL_KEY"];
+$cert_pass = $_GET["REST_CERT_PASS"];
+
 $messageLog = [];
 $messageLog[] = "Token " . $storedToken;
 $messageLog[] = "storeName " . $storeName;
 
 $url = "https://api-partner-connect.apple.com/api/authenticate/token";
 $requestHeaders = array(
-    "X-Apple-SoldTo: " . $requestBody["REST_SoldTo"],
-    "X-Apple-ShipTo: " . $requestBody["REST_ShipTo"],
+    "X-Apple-SoldTo: " . $rest_sold_to,
+    "X-Apple-ShipTo: " . $rest_ship_to,
     "X-Apple-Trace-ID: " . $storedToken,
     "X-Apple-Service-Version: v5",
     "Content-Type: application/json",
@@ -33,16 +40,16 @@ $requestHeaders = array(
 $messageLog[] = "Request headers to update token = " . json_encode($requestHeaders);
 $postData = [
     "authToken" => $storedToken,
-    "userAppleId" => $requestBody["REST_ACCOUNT_ID"]
+    "userAppleId" => $rest_account_id
 ];
 $messageLog[] = "Request body to update token = " . json_encode($postData);
 $messageLog[] = "Ready to execute request to update token ";
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_SSLCERT, $requestBody["REST_CERT_PATH"]);
-curl_setopt($ch, CURLOPT_SSLKEY, $requestBody["REST_SSL_KEY"]);
-curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $requestBody["REST_CERT_PASS"]);
+curl_setopt($ch, CURLOPT_SSLCERT, $rest_cert_path);
+curl_setopt($ch, CURLOPT_SSLKEY, $ssl_key);
+curl_setopt($ch, CURLOPT_SSLCERTPASSWD, $cert_pass);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
