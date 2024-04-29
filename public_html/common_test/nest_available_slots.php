@@ -66,6 +66,8 @@ if (!isset($_GET['rest_cert_pass'])) {
 
 
 header('Content-Type: application/json');
+$messageLog = array();
+$messageLog[] = "Token parameter ";
 
 $token = $_GET['token'];
 $storeName = $_GET['store_name'];
@@ -78,7 +80,7 @@ $rest_cert_path = __DIR__ .$_GET["rest_cert_path"];
 $ssl_key = __DIR__ .$_GET["rest_ssl_key"];
 $cert_pass = __DIR__ .$_GET["rest_cert_pass"];
 
-$messageLog = array();
+
 
 $messageLog[] = "Token parameter " . $token;
 $messageLog[] = "Store name parameter " . $storeName;
